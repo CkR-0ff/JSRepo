@@ -1,3 +1,39 @@
+if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
+	      done = true;
+	      alert('ScriptLoaded');
+	  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////------------------------------------------------///////////////////////////////////////////////////
+
+
+
+
 javascript: (
   function Great(version) {
     var v = "1.4";
