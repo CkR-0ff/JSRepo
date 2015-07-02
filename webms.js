@@ -1,6 +1,10 @@
 javascript: (
-  function () {
+  function Great(version) {
     var v = "1.4";
+    if(version){
+      v = version;
+    }
+    
     if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
 		var done = false;
 		var script = document.createElement("script");
