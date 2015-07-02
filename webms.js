@@ -192,5 +192,3 @@ var vid = document.createElement('video');
 	    vid.onmouseover = vid.play();
 	    vid.onmouseout = vid.pouse();
 	    vid.src = linksArray[(i*5)+j].substring(2);
-
-javascript: (  function () {    var thumbElements = document.getElementsByClassName("fileThumb");    var linksArray = [];        for(var i = 0; i < thumbElements.length; i++){      linksArray.push(thumbElements[i].getAttribute("href"));        }            var trows = Math.floor(thumbElements.length/5)+1;    var body=document.getElementsByTagName('body')[0];    var tbl=document.createElement('table');    tbl.style.width='100%';    tbl.setAttribute('border','1');    var tbdy=document.createElement('tbody');    for(var i=0;i<trows;i++){var tr=document.createElement('tr');for(var j=0;j<5;j++){        var td=document.createElement('td');    var vid = document.createElement('video');    vid.onmouseover = vid.play();    vid.onmouseout = vid.pouse();    vid.src = substring(2,linksArray[(i*5)+j]);    td.appendChild(document.createTextNode(vid));    tr.appendChild(td);    }}tbdy.appendChild(tr);tbl.appendChild(tbdy);body.appendChild(tbl);alert(tbl.innerHTML);   }()    );
