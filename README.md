@@ -1,3 +1,3 @@
 # JSRepo
-Javascript training course
+Javascript training course - making Bookmarklets
 
