@@ -17,12 +17,12 @@ javascript: (
       scr.onload = scr.onreadystatechange = function(){
 	  if (!done && (!scr.readyState || scr.readyState == "loaded" || scr.readyState == "complete")) {
 	      done = true;
-	      alert('inside');
+	      btnAdderScript();
 	  }
       };
       document.getElementsByTagName("head")[0].appendChild(scr);
     }else{
-      alert('ScriptAlreadyThere');
+      btnAdderScript();
     }
     
   }()
