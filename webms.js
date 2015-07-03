@@ -161,8 +161,6 @@ javascript: (
 		alert('already there' + window.jQuery.fn.jquery);
 	}
     
-    
-    
         
     for(var i = 0; i < thumbElements.length; i++){
       linksArray.push(thumbElements[i].getAttribute("href"));    
