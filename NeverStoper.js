@@ -24,7 +24,7 @@ var roller = function(){
   msgs.push('Oooops another one... electricuted... BECAUSE OF YOU...');
   msgs.push('Fuck... where did that one come from... ');
   msgs.push('Holy fuck... Holy fuck... Snails on the loose... snails on the loose... ');
-  msgs.push('Interrupting transmission because of angry snail mob problems... congrats... I\'m dead');
+  msgs.push('Interrupting transmission because of angry snail mob problems... congrats... I\'m dead... Hope You\'re happy now...');
   
   for(var i=0;i<msgs.length; i++){
     alert(msgs[i]);
