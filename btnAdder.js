@@ -1,7 +1,7 @@
 var btnAdderScript = function (){
   var btn = btnCreator();
   btn.click( function (){
-    var newBtn = btnCreator();
+    btnAdderScript();
   });
   
 }

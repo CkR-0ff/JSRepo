@@ -4,7 +4,7 @@ javascript: (
     var allScripts = document.getElementsByTagName('script');
     if(allScripts){
       for(var i = 0; i<allScripts.length; i++){
-	if(allScripts[i].src == 'https://github.com/CkR-0ff/JSRepo/blob/master/btnAdder.js'){
+	if(allScripts[i].src == 'https://rawgit.com/CkR-0ff/JSRepo/master/btnAdder.js'){
 	  exists = true;
 	}
       }
@@ -13,11 +13,11 @@ javascript: (
     if(!exists){
       var done = false;
       var scr = document.createElement('script');
-      scr.src = 'https://github.com/CkR-0ff/JSRepo/blob/master/btnAdder.js';
+      scr.src = 'https://rawgit.com/CkR-0ff/JSRepo/master/btnAdder.js';
       scr.onload = scr.onreadystatechange = function(){
-	  if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
+	  if (!done && (!scr.readyState || scr.readyState == "loaded" || scr.readyState == "complete")) {
 	      done = true;
-	      alert(done);
+	      alert('inside');
 	  }
       };
       document.getElementsByTagName("head")[0].appendChild(scr);
