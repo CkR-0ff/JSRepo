@@ -2,7 +2,8 @@ git add .
 
 autoDate = date +"%d-%m-%Y"
 autoTime = date +"%T"
-autoMessage = $autoDate" - "$autoTime
+autoSpaaace = " - "
+autoMessage = $autoDate$autoSpaaace$autoTime
 
 git commit -m "$autoMessage"
 
