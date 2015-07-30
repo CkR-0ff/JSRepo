@@ -97,6 +97,123 @@ javascript: (
   }()
 );
 
+
+
+javascript: (
+  function() {
+    var fileElements = document.getElementsByClassName("file-info");
+    var linksArray = [];
+    var nameRep = [];
+    
+    for(var i = 0; i < fileElements.length; i++){
+      var infA = fileElements[i].getElementsByTagName("a")[0];
+      var full = infA.getElementsByClassName("fnswitch")[0];
+      var objkt = { targt:infA.href };
+      if(full){
+	objkt.nm = full.getElementsByClassName("fnfull")[0].innerHTML;
+      }else{
+	objkt.nm = infA.innerHTML;
+      }
+      
+      linksArray.push(objkt);    
+      nameRep.push(objkt.targt + " :+: " + objkt.nm);
+    }
+    var blbText = nameRep.join('\n');
+    var data = new Blob([blbText], {type: 'text/plain'});
+    
+    var textFile = window.URL.createObjectURL(data);
+    var adload = document.createElement('a');
+    adload.href = textFile;
+    adload.download = "NamesLinks.txt";
+    adload.click();
+    
+  }()
+);
+
+
+javascript: (
+  function() {
+    var fileElements = document.getElementsByClassName("file-info");
+    var linksArray = [];
+    var nameRep = [];
+    
+    for(var i = 0; i < fileElements.length; i++){
+      var infA = fileElements[i].getElementsByTagName("a")[0];
+      var full = infA.getElementsByClassName("fnswitch")[0];
+      var objkt = { targt:infA.href };
+      if(full){
+	objkt.nm = full.getElementsByClassName("fnfull")[0].innerHTML;
+      }else{
+	objkt.nm = infA.innerHTML;
+      }
+      
+      linksArray.push(objkt);    
+      nameRep.push(objkt.targt.split('/').pop() + " | " + objkt.nm);
+    }
+    var blbText = nameRep.join('\n');
+    alert('Download All ' + linksArray.length + ' WEBMs!?!?! \n');
+    
+    var data = new Blob([blbText], {type: 'text/plain'});
+    var textFile = window.URL.createObjectURL(data);
+    
+    var adload = document.createElement('a');
+    adload.href = textFile;
+    adload.download = "NamesLinks.txt";
+    adload.click();
+    for(var i=0; i<linksArray.length; i++) {
+      
+      adload.href = linksArray[i].targt;
+      adload.download = "pishka" + i;
+      document.getElementsByTagName('body')[0].appendChild(adload);
+      
+      adload.click();
+      
+      document.getElementsByTagName('body')[0].removeChild(adload);
+    }
+    
+  }()
+);
+
+
+//================================WEBM=Downloader=With=NamesList.txt=========================================
+
+javascript: (
+  function() {
+    var fileElements = document.getElementsByClassName("file-info");
+    var linksArray = [];
+    var nameRep = [];
+    
+    for(var i = 0; i < fileElements.length; i++){
+      var infA = fileElements[i].getElementsByTagName("a")[0];
+      var full = infA.getElementsByClassName("fnswitch")[0];
+      var objkt = "";
+      if(full){
+	objkt = full.getElementsByClassName("fnfull")[0].innerHTML;
+      }else{
+	objkt = infA.innerHTML;
+      }
+      nameRep.push(infA.href.split('/').pop() + "\n" + objkt);
+      infA.href = infA.href.substring(5);
+      infA.download = objkt;
+      infA.click();
+    }
+    
+    var blbText = nameRep.join('\n');
+    
+    var data = new Blob([blbText], {type: 'text/plain'});
+    var textFile = window.URL.createObjectURL(data);
+    
+    var adload = document.createElement('a');
+    adload.href = textFile;
+    adload.download = "NamesLinks.txt";
+    adload.click();
+  }()
+);
+
+//===========================================================================================================
+
+
+
 javascript:(
   function(){
     
@@ -196,6 +313,8 @@ javascript: (
     
 );
 
+
+javascript: (  function() {    var thumbElements = document.getElementsByClassName("fileThumb");    var linksArray = [];        for(var i = 0; i < thumbElements.length; i++){      linksArray.push(thumbElements[i].getAttribute("href"));        }        alert('Download All These!?!?! \n' + linksArray.join('\n'));        for(var i=0; i<linksArray.length; i++) {            var adload = document.createElement('a');      adload.href = linksArray[i];      adload.download = 'newWebm' + i + '.webm';          adload.click();          }      }());
 
 var trows = Math.floor(thumbElements.length/5)+1;
     var body=document.getElementsByTagName('body')[0];
