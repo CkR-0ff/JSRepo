@@ -102,9 +102,6 @@ javascript: (
     
     var frame1 = document.createElement("iframe");
     var frame2 = document.createElement("iframe");
-    
-    
-    
-    
+
   }()
 );
