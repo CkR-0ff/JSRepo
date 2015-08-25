@@ -90,7 +90,7 @@ javascript: (
 javascript: (
   function() {
     var bdy = document.getElementsByTagName("body")[0];
-    
+      
     while(bdy.firstChild){
       bdy.removeChild(bdy.firstChild);
     }
