@@ -59,7 +59,7 @@ javascript: (
   }()
 );
 
-//=======================================JustAdd Down======================================================
+//=================================================Just=Add=Down======================================================
 
 
 javascript: (
@@ -84,24 +84,13 @@ javascript: (
   }()
 );
 
-//==================================================Framer All=========================================================
+
+
+//===================================================nline==============================================================
 
 
 javascript: (
-  function() {
-    var bdy = document.getElementsByTagName("body")[0];
-      
-    while(bdy.firstChild){
-      bdy.removeChild(bdy.firstChild);
-    }
-    
-    var obj = {
-      txt_fld: '',
-      show_fld: ''
-    };
-    
-    var frame1 = document.createElement("iframe");
-    var frame2 = document.createElement("iframe");
-
+  function(){
+   
   }()
 );
