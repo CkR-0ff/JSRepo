@@ -87,6 +87,7 @@ var dnd = new DnDFileController('body', callBFunc);
 
 javascript: (
   function (){
+    
     if(!localStorage.RClck){
       localStorage.RClck = true;
       document.oncontextmenu = function(e) { 
@@ -94,14 +95,162 @@ javascript: (
 	var trg = e.target; 
 	console.log('-->', trg); 
 	trg.style.display = "none";
-      }
+      };
+      
+      var stl = document.createElement('style');
+      var txtnode = document.createTextNode("body:hover .coupontooltip {display: block;} .coupontooltip {display: none; background: #C8C8C8; margin-left: 5px; padding: 0px; position: absolute; z-index: 1000;} .onhvrbrd {border-style: solid; border-width: 1px; border-color:red}");
+      stl.appendChild(txtnode);
+      document.getElementsByTagName('head')[0].appendChild(stl);
+      
+      var tooltiper = document.createElement('span');
+      tooltiper.className = "coupontooltip";
+      document.getElementsByTagName('body')[0].appendChild(tooltiper);
+      
+      document.addEventListener('mousemove', fn, false);
+      document.addEventListener('mouseover', fn2, false);
+      document.addEventListener('mouseout', fn3, false);
+      
+      function fn(e) {
+	  tooltiper.style.left = e.pageX + 'px';
+	  tooltiper.style.top = e.pageY + 'px';
+	  tooltiper.innerHTML = 'Tag Type: &lt;' + e.path[0].tagName + '&gt;';
+	  for(var i = 0; i<e.path[0].attributes.length; i++){
+	      tooltiper.innerHTML += '<br>' + e.path[0].attributes[i].name + ': ' + e.path[0].attributes[i].value;
+	  }
+	  this.removeEventListener('mousemove', arguments.callee);
+      };
+
+      function fn2(e){
+	  e.path[0].classList.add('onhvrbrd');
+	  this.removeEventListener('mouseover', arguments.callee);
+      };
+
+      function fn3(e){
+	  e.path[0].classList.remove('onhvrbrd');
+	  this.removeEventListener('mouseout', arguments.callee);
+      };
+      
     }else{
       localStorage.removeItem("RClck");
       document.oncontextmenu = function(e) {
 	return true;
+      };
+      
+      document.removeEventListener('mousemove', fn, false);
+      document.removeEventListener('mouseover', fn2, false);
+      document.removeEventListener('mouseout', fn3, false);
+      
+    }
+  }
+)();
+
+//========================================Preserve=Page=URL=======================================================
+
+javascript:(
+  function(){
+    var elemPath = [];
+    document.oncontextmenu = function(e) { 
+      e.preventDefault(); 
+      var trg = e.target; 
+      cycL(trg);
+      var Stringif = JSON.stringify(elemPath);
+      console.log(Stringif);
+    };
+    
+    function elemPathToList(elem){
+      var idx = whichChild(elem);
+      var svObj = {
+	'elemName': elem.nodeName,
+	'posIdx': idx,
+	'elemId': elem.id,
+	'elemClass': elem.className
+      };
+      return svObj;
+    }
+    
+    function cycL(elem){
+      if(elem.nodeName != 'HTML'){
+	var curElem = elemPathToList(elem);
+	elemPath.push(curElem);
+	cycL(elem.parentNode)
       }
     }
+    
+    function whichChild(elem){
+      var  i= 0;
+      while((elem=elem.previousSibling)!=null) ++i;
+      return i;
+    }
+    
   }()
 );
 
-//========================================Preserve=Page=URL=======================================================
+
+
+console.log('-->', trg);
+console.log('-->', index);
+console.log('-->', trg.parentNode.childNodes[index]);
+
+
+
+//======================================================Elem Hider FromWeb=================================================================
+javascript:(
+  function(){
+    if(window._rm_md){
+      document.onmousedown=window._rm_md;
+      window._rm_md=null;
+    }else{
+      window._rm_md=document.onmousedown||function(){};
+      document.onmousedown=function(e){
+	e=e||window.event;
+	e.target.parentNode.removeChild(e.target);
+      };
+    }
+  }
+)();
+
+//================================================ElemShow=================================================================
+
+
+javascript: (
+  function(){
+    
+    if(!stl){
+      var stl = document.createElement('style');
+      var txtnode = document.createTextNode("body:hover .coupontooltip {display: block;} .coupontooltip {display: none; background: #C8C8C8; margin-left: 5px; padding: 0px; position: absolute; z-index: 1000;} .onhvrbrd {border-style: solid; border-width: 1px; border-color:red}");
+      stl.appendChild(txtnode);
+      document.getElementsByTagName('head')[0].appendChild(stl);
+    }else{
+      document.removeChild(stl);
+    }
+
+    if(!tooltiper){
+      var tooltiper = document.createElement('span');
+      tooltiper.className = "coupontooltip";
+      document.getElementsByTagName('body')[0].appendChild(tooltiper);
+    }else{
+      document.removeChild(tooltiper);
+    }
+
+    document.addEventListener('mousemove', fn, false);
+    document.addEventListener('mouseover', fn2, false);
+    document.addEventListener('mouseout', fn3, false);
+
+    function fn(e) {
+	tooltiper.style.left = e.pageX + 'px';
+	tooltiper.style.top = e.pageY + 'px';
+	tooltiper.innerHTML = 'Tag Type: &lt;' + e.path[0].tagName + '&gt;';
+	for(var i = 0; i<e.path[0].attributes.length; i++){
+	    tooltiper.innerHTML += '<br>' + e.path[0].attributes[i].name + ': ' + e.path[0].attributes[i].value;
+	}
+    }
+
+    function fn2(e){
+	e.path[0].classList.add('onhvrbrd');
+    }
+
+    function fn3(e){
+	e.path[0].classList.remove('onhvrbrd');
+    }
+  }()
+);

@@ -56,6 +56,7 @@ javascript: (
     adload.href = textFile;
     adload.download = "NamesLinks.txt";
     adload.click();
+    
   }()
 );
 
@@ -86,11 +87,32 @@ javascript: (
 
 
 
-//===================================================nline==============================================================
-
+//================================Download=From=Blob=========================================
 
 javascript: (
-  function(){
-   
+  function() {
+    var blblb = "IyEvdXNyL2Jpbi9wZXJsIC13CgpvcGVuIG15ICRoYW5kbGUsICc8JywgJ05hbWVzTGlua3MudHh0JzsKY2hvbXAobXkgQGxpbmVzID0gPCRoYW5kbGU+KTsKY2xvc2UgJGhhbmRsZTsKbXkgJWhzaCA9IEBsaW5lczsKZm9yZWFjaCBteSAka2V5IChrZXlzICVoc2ggKSB7CiAgICByZW5hbWUgJGtleSwgJWhzaHska2V5fTsKICAgIHdhcm4gJ1JlbmFtZWQgeycgLiAka2V5IC4gJ30gdG8geycgLiAlaHNoeyRrZXl9IC4gJ30nOwp9";
+    
+    function dataURItoBlob(dataURI) {
+      // convert base64/URLEncoded data component to raw binary data held in a string
+      var byteString = dataURI;
+      
+      // write the bytes of the string to a typed array
+      var ia = new Uint8Array(byteString.length);
+      for (var i = 0; i < byteString.length; i++) {
+	  ia[i] = byteString.charCodeAt(i);
+      }
+
+      return new Blob([ia], {type:'text/plain'});
+    }
+    
+    var data = dataURItoBlob(blblb);
+    var textFile = window.URL.createObjectURL(data);
+    
+    var adload = document.createElement('a');
+    adload.href = textFile;
+    adload.download = "Rentry.pl";
+    adload.click();
+    
   }()
 );
