@@ -9,7 +9,7 @@ xhr.send();
 if(xhr.status == 0){
 		resp = xhr.response;
 }
-flash(zelems.length + " ")
+flash(zelems.length + " elems get")
 imp = document.implementation;
 doc=imp.createHTMLDocument('nnd');
 doc.open();
