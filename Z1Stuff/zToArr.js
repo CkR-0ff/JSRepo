@@ -7,7 +7,7 @@ xhr = new XMLHttpRequest();
 xhr.open('GET', '/sdcard/Tasker/TJSFs/zResp.html', false);
 xhr.send();
 if(xhr.status == 0){
-		resp = xhr.response;
+	resp = xhr.response;
 }
 flash(zelems.length + " elems gets")
 imp = document.implementation;
@@ -20,7 +20,6 @@ var links = $(bdy).find("a[href^='banan?id']");
 flash(links[10].innerHTML);
 for(var i=0;i<links.length;i++){
 	if(links[i].firstChild.nodeName == 'B'){	
-	zelems.push(links[i].firstChild.innerHTML);
-		
+		zelems.push(links[i].firstChild.innerHTML);
 	}
 }
