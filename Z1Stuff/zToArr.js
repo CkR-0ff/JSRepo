@@ -2,7 +2,7 @@ var zelems = [];
 var resp = "";
 var imp = {};
 var xhr = {};
-var doc = {};
+var doc = {} ;
 xhr = new XMLHttpRequest();
 xhr.open('GET', '/sdcard/Tasker/TJSFs/zResp.html', false);
 xhr.send();
