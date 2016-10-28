@@ -22,7 +22,8 @@ var writeTree = function (tree){
 	flash('inWTF');
 	tree.forEach(function(el){
 		for(var i = 0; i < el.paths.length; i++){
-			tk.performTask('WrFilePar', priority, el.toDir + '/' + el.paths[i].name, el.paths[i].path);
+			var res = tk.performTask('WrFilePar', priority, el.toDir + '/' + el.paths[i].name, el.paths[i].path);
+			flash(res);
 		}
 	});
 }
