@@ -1,5 +1,6 @@
 var treeArr = [];
-function gitApiGet(repo, dir){
+var gitApiGet = function(repo, dir){
+	flash('inGAG' + 'for ' + dir);
 	var dLoadArr = [];
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'https://api.github.com/repos/CkR-0ff/' + repo + '/contents' + dir, false);
@@ -17,7 +18,8 @@ function gitApiGet(repo, dir){
 	}
 	treeArr.push({toDir: dir, paths: dLoadArr});
 }
-function writeTree(tree){
+var writeTree = function (tree){
+	flash('inWTF');
 	tree.forEach(function(el){
 		for(var i = 0; i < el.paths.length; i++){
 			tk.performTask('WrFilePar', priority, el.toDir + '/' + el.paths[i].name, el.paths[i].path);
