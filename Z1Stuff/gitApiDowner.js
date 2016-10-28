@@ -23,7 +23,7 @@ var writeTree = function (tree){
 	tree.forEach(function(el){
 		for(var i = 0; i < el.paths.length; i++){
 			var res = tk.performTask('WrFilePar', priority+i, el.toDir + '/' + el.paths[i].name, el.paths[i].path);
-			flash(res);
+			flash(res + ' ' +  el.toDir + '/' + el.paths[i].name);
 		}
 	});
 }
