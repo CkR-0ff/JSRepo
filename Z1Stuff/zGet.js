@@ -29,8 +29,8 @@ var respToDoc = function(resp){
 
 var elemsToArr = function(doc){
   flash('in elemsToArr ' + doc);
-  var bdy = $(doc.getElementsByTagName('body')[0]);
-  var links = $(bdy).find("a[href^='banan?id']");
+  var bdy = doc.getElementsByTagName('body')[0];
+  var links = bdy.querySelectorAll("a[href^='banan?id']");
   
   return links
 };
@@ -42,7 +42,7 @@ var linksList = function(links){
       zelems.push(links[i].firstChild.innerHTML);
     }
   }
-  flash('z len: '+zelems.length +'; z num 4:'+ zelems[3] + '; z -4: '+zelems[zelems.length-4]);
+  flash('z len: '+zelems.length +';\r\n z num 4:'+ zelems[3] + ';\r\n z -4: '+zelems[zelems.length-4]);
 };
 
 var rsp = zGet(global('%ZResp'));
