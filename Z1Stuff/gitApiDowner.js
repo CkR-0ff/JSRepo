@@ -16,7 +16,7 @@ var gitApiGet = function(repo, dir){
 				gitApiGet(repo, dir + '/' + el.name);
 			}
 		});
-		dlen = dLinks.length;
+		dlen = dlinks.length;
 	}
 }
-gitApiGet('JSRepo', '');
+gitApiGet('JSRepo', 'Z1Stuff');
