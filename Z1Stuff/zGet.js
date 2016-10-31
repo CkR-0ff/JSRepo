@@ -9,7 +9,7 @@ var zGet = function(zPagePath){
   flash('xhr.status is '+xhr.status);
   if(xhr.status === 0){
     ret = xhr.response;
-    var ok = writeFile( global('/sdcard/Tasker/TJSFs/Dec.txt'), ret, false)
+    var ok = writeFile( '/sdcard/Tasker/TJSFs/Dec.txt', ret, false)
   }
   
   return ret;
