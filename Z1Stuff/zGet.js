@@ -1,6 +1,7 @@
 var zelems = [];
 
 var zGet = function(zPagePath){
+  flash('in zGet');
   var ret;
   xhr = new XMLHttpRequest();
   xhr.open('GET', zPagePath, false);
@@ -13,6 +14,7 @@ var zGet = function(zPagePath){
 };
 
 var respToDoc = function(resp){
+  flash('in respToDoc');
   var imp = document.implementation;
   var doc=imp.createHTMLDocument('');
   doc.open();
@@ -23,6 +25,7 @@ var respToDoc = function(resp){
 };
 
 var elemsToArr = function(doc){
+  flash('in elemsToArr');
   var bdy = $(doc.getElementsByTagName('body')[0]);
   var links = $(bdy).find("a[href^='banan?id']");
   
@@ -30,6 +33,7 @@ var elemsToArr = function(doc){
 };
 
 var linksList = function(links){
+  flash('in linksList');
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
       zelems.push(links[i].firstChild.innerHTML);
