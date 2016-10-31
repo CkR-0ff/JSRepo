@@ -6,8 +6,10 @@ var zGet = function(zPagePath){
   xhr = new XMLHttpRequest();
   xhr.open('GET', zPagePath, false);
   xhr.send();
+  flash('xhr.status is '+xhr.status);
   if(xhr.status === 0){
     ret = xhr.response;
+    flash(ret);
   }
   
   return ret;
