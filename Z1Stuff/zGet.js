@@ -9,6 +9,7 @@ var zGet = function(zPagePath){
   flash('xhr.status is '+xhr.status);
   if(xhr.status === 0){
     ret = xhr.response;
+    flash(ret);
     flash(window.location.pathname);
   }
   
@@ -16,7 +17,7 @@ var zGet = function(zPagePath){
 };
 
 var respToDoc = function(resp){
-  flash('in respToDoc ' + resp);
+  flash('in respToDoc ');
   var imp = document.implementation;
   var doc=imp.createHTMLDocument('');
   doc.open();
