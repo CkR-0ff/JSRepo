@@ -41,6 +41,7 @@ var linksList = function(links){
       zelems.push(links[i].firstChild.innerHTML);
     }
   }
+  flash('z len: '+zelems.length +'; z num 4:'+ zelems[3] + '; z -4: '+zelems[zelems.length-4]);
 };
 
 var rsp = zGet(global('%ZResp'));
