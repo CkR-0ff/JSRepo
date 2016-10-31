@@ -2,16 +2,7 @@ var zelems = [];
 
 var zGet = function(zPagePath){
   flash('in zGet '+ zPagePath);
-  var ret;
-  xhr = new XMLHttpRequest();
-  xhr.open('GET', zPagePath, false);
-  xhr.send();
-  flash('xhr.status is '+xhr.status);
-  if(xhr.status === 0){
-    ret = xhr.response;
-    var ok = writeFile( '/sdcard/Tasker/TJSFs/Dec.txt', ret, false)
-  }
-  
+  var ret = readFile(zPagePath);
   return ret;
 };
 
