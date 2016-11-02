@@ -29,7 +29,7 @@ var parseTip = function(msg){
   var tempCont = document.createElement('div');
   tempCont.innerHTML = msg.substr(start+1, end-start-1);
   var imgEl = tempCont.getElementsByTagName('img')[0];
-  return imgEl.getAttribute('src');
+  return imgEl.src;
 };
 
 var linksList = function(links){
