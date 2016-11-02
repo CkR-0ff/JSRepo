@@ -29,7 +29,9 @@ var parseTip = function(msg){
   var tempCont = document.createElement('div');
   tempCont.innerHTML = msg.substr(start+1, end-start-1);
   var imgEl = tempCont.getElementsByTagName('img')[0];
-  return imgEl.src;
+  var link = imgEl.src.substr(imgEl.src.indexOf('http')+7);
+  link[link.length-1] = '';
+  return link;
 };
 
 var linksList = function(links){
