@@ -31,6 +31,7 @@ var parseTip = function(msg){
   var imgEl = tempCont.getElementsByTagName('img')[0];
   var link = imgEl.src.substr(imgEl.src.indexOf('http')+7);
   link[link.length-1] = '';
+  link[link.length-2] = '';
   return link;
 };
 
