@@ -1,4 +1,5 @@
 var zelems = [];
+var zimgs = [];
 
 var zGet = function(zPagePath){
   var ret = readFile(zPagePath);
@@ -22,10 +23,21 @@ var elemsToArr = function(doc){
   return links
 };
 
+var parseTip = function(msg){
+  var start = msg.indexOf("'");
+  var end = msg.lastIndexOf("'");
+  var tempCont = document.createElement('div');
+  tempCont.innerHTML = msg.substr(start+1, end-start-1);
+  var imgEl = tempCont.getElementsByTagName('img')[0];
+  return imgEl.getAttribute('src');
+};
+
 var linksList = function(links){
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
       zelems.push(links[i].firstChild.innerHTML);
+      var imgLink = parseTip(links[i].getAttribute('onmouseover'));
+      zimgs.push(imgLink);
     }
   }
 };
