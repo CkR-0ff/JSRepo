@@ -39,7 +39,6 @@ var linksList = function(links){
     if(links[i].firstChild.nodeName == 'B'){	
       zelems.push(links[i].firstChild.innerHTML);
       var imgLink = parseTip(links[i].getAttribute('onmouseover'));
-      imgLink.replace('\\','');
       zimgs.push(imgLink);
     }
   }
