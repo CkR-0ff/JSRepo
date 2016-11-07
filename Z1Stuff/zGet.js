@@ -48,3 +48,4 @@ var rsp = zGet(global('%ZResp'));
 var respdoc = respToDoc(rsp);
 var linksarr = elemsToArr(respdoc);
 linksList(linksarr);
+var zelcount = zelems.length;
