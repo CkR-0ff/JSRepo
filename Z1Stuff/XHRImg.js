@@ -4,7 +4,7 @@ function XHRImgLoad(path){
   xhr.open("GET", path, false);
   xhr.send();
   flash(xhr.status);
-  if (xhr.status === 200) {
+  if (xhr.status == 200) {
     blob = new Blob([xhr.response], {type: "image/jpg"});
   }
   return blob;
