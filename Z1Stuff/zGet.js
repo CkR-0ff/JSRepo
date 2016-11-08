@@ -57,7 +57,7 @@ var JSONify = function(arr){
     var el = arr[i];
     var jsn = {
       nm: el,
-      path: global('%taskerJsDir') + i + global('%imgStandard')
+      path: global('%taskerJsDir') + (i+1) + global('%imgStandard')
     };
     jsnObj.data.push(jsn);
   }
@@ -65,4 +65,4 @@ var JSONify = function(arr){
 
 JSONify(zelems);
 
-var jsnString = JSON.stringify(jsnObj);
+var jsnstring = JSON.stringify(jsnObj);
