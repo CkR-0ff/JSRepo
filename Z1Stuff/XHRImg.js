@@ -1,11 +1,12 @@
 function XHRImgLoad(path){
-  var img;
+  var blob;
   var xhr = new XMLHttpRequest();
   xhr.open("GET", path, false);
+  xhr.responseType('arraybuffer');
   xhr.send();
   flash(xhr.status);
   if (xhr.status === 200) {
-    img = xhr.response;
+    blob = new Blob([xhr.response], {type: "image/jpg"});
   }
-  return img;
+  return blob;
 }
