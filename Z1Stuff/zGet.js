@@ -49,3 +49,20 @@ var respdoc = respToDoc(rsp);
 var linksarr = elemsToArr(respdoc);
 linksList(linksarr);
 var zelcount = zelems.length;
+
+var jsnObj = {data: []};
+
+var JSONify = function(arr){
+  for (var i = 0; i < arr.length; i++) {
+    var el = arr[i];
+    var jsn = {
+      nm: el,
+      path: global('%taskerJsDir') + i + global('%imgStandard')
+    };
+    jsnObj.data.push(jsn);
+  }
+};
+
+JSONify(zelems);
+
+var jsnString = JSON.stringify(jsnObj);
