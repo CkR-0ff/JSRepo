@@ -10,9 +10,6 @@ for (var i = 0; i < obj.data.length; i++) {
   var inte = new Intent();
   var itmLen = pancon.getItems().getLength();
   var itmPan = pancon.addPanel((itmLen % 4) * 270, (Math.floor(itmLen / 4) * 480), 270, 480);
-  if (pancon.getItemZIndex(itmPan.getId()) > overZ) {
-    overZ = pancon.getItemZIndex(itmPan.getId());
-  }
   var imgBack = LL.createImage(obj.data[i].path);
   itmPan.setBoxBackground(imgBack, 'nsf');
   var itmCon = itmPan.getContainer();
@@ -35,5 +32,8 @@ for (var i = 0; i < obj.data.length; i++) {
   pr.setBoolean("s.iconVisibility", false);
   pr.setBoolean("i.enabled", true);
   pr.commit();
+  if (pancon.getItemZIndex(itmPan.getId()) > overZ) {
+    overZ = pancon.getItemZIndex(itmPan.getId());
+  }
 }
 pan.setTag('thepanData', JSON.stringify({highZ:overZ}));
