@@ -13,12 +13,12 @@ var conPrEdit = itmCon.getProperties().edit();
   conPrEdit.setString("gridPRowMode", "NUM");
   conPrEdit.setInteger("gridPColumnNum", 1);
   conPrEdit.setInteger("gridPRowNum", 1);
+  conPrEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   conPrEdit.commit();
 
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
-  prEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   prEdit.commit();
 var imgBack = LL.createImage(calData.path);
 //alert(imgBack.getWidth() + 'X' + imgBack.getHeight());
