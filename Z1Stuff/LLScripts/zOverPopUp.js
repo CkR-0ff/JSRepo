@@ -5,20 +5,29 @@ var dsc = LL.getDesktopByName('MainDesk');
 var pan = dsc.getItemByName("thepan");
 var pancon = pan.getContainer();
 var inte = new Intent();
-var itmCon = pancon.addPanel(10, 10, 100, 100);
-//var itmCon = itmPan.getContainer();
-var prEdit = itmCon.getProperties().edit();
-prEdit.setBoolean('i.onGrid', false);
-prEdit.commit();
+var itmPan = pancon.addPanel(10, 10, 100, 100);
+var itmCon = itmPan.getContainer();
+
+var conPrEdit = itmCon.getProperties().edit();
+  conPrEdit.setString("gridPColumnMode", "NUM");
+  conPrEdit.setString("gridPRowMode", "NUM");
+  conPrEdit.setInteger("gridPColumnNum", 1);
+  conPrEdit.setInteger("gridPRowNum", 1);
+  conPrEdit.commit();
+
+
+var prEdit = itmPan.getProperties().edit();
+  prEdit.setBoolean('i.onGrid', false);
+  prEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose'));
+  prEdit.commit();
 var imgBack = LL.createImage(calData.path);
 //alert(imgBack.getWidth() + 'X' + imgBack.getHeight());
 if (imgBack.getWidth() < imgBack.getHeight()) {
-  itmCon.setSize(((pancon.getHeight()) / imgBack.getHeight()) * (imgBack.getWidth()), pancon.getHeight());
+  itmPan.setSize(((pancon.getHeight()) / imgBack.getHeight()) * (imgBack.getWidth()), pancon.getHeight());
 } else {
-  itmCon.setSize(((pancon.getWidth()) / imgBack.getWidth()) * (imgBack.getHeight()), pancon.getWidth());
+  itmPan.setSize(((pancon.getWidth()) / imgBack.getWidth()) * (imgBack.getHeight()), pancon.getWidth());
 }
-
-itmCon.setPosition((pancon.getWidth() - itmCon.getWidth()) / 2, (pancon.getHeight() - itmCon.getHeight()) / 2);
-pancon.setItemZIndex(itmCon.getId(), 21);
-itmCon.setBoxBackground(imgBack, 'nsf');
-itmCon.setScale(0.8, 0.8);
+itmPan.setPosition((pancon.getWidth() - itmPan.getWidth()) / 2, (pancon.getHeight() - itmPan.getHeight()) / 2);
+pancon.setItemZIndex(itmPan.getId(), 21);
+itmPan.setBoxBackground(imgBack, 'nsf');
+itmPan.setScale(0.8, 0.8);
