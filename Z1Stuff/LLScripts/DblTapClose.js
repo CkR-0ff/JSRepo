@@ -1,2 +1,2 @@
-var callerItem = LL.getEvent().getItem();
+var callerItem = LL.getEvent().getContainer();
 callerItem.getParent().removeItem(callerItem);
