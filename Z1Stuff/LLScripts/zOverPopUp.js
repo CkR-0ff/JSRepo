@@ -6,6 +6,7 @@ var pan = dsc.getItemByName("thepan");
 var pancon = pan.getContainer();
 var inte = new Intent();
 var itmPan = pancon.addPanel(10, 10, 100, 100);
+itmPan.setName('ZamiPopUp');
 var itmCon = itmPan.getContainer();
 
 var conPrEdit = itmCon.getProperties().edit();
@@ -13,13 +14,12 @@ var conPrEdit = itmCon.getProperties().edit();
   conPrEdit.setString("gridPRowMode", "NUM");
   conPrEdit.setInteger("gridPColumnNum", 1);
   conPrEdit.setInteger("gridPRowNum", 1);
+  conPrEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   conPrEdit.commit();
 
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
-  prEdit.setBoolean('i.enabled', true);
-  prEdit.setEventHandler('i.tap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   prEdit.commit();
 var imgBack = LL.createImage(calData.path);
 //alert(imgBack.getWidth() + 'X' + imgBack.getHeight());
