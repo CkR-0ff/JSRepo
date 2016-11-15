@@ -1,8 +1,8 @@
 var caller = LL.getEvent().getItem();
-//alert(caller.getTag('shData'));
 var calData = JSON.parse(caller.getTag('shData'));
 var dsc = LL.getDesktopByName('MainDesk');
 var pan = dsc.getItemByName("thepan");
+var MainData = JSON.parse(pan.getTag('thepanData'));
 var pancon = pan.getContainer();
 var inte = new Intent();
 var itmPan = pancon.addPanel(10, 10, 100, 100);
@@ -29,6 +29,6 @@ if (imgBack.getWidth() < imgBack.getHeight()) {
   itmPan.setSize(((pancon.getWidth()) / imgBack.getWidth()) * (imgBack.getHeight()), pancon.getWidth());
 }
 itmPan.setPosition((pancon.getWidth() - itmPan.getWidth()) / 2, (pancon.getHeight() - itmPan.getHeight()) / 2);
-pancon.setItemZIndex(itmPan.getId(), 21);
+pancon.setItemZIndex(itmPan.getId(), MainData.highZ);
 itmPan.setBoxBackground(imgBack, 'nsf');
 itmPan.setScale(0.8, 0.8);
