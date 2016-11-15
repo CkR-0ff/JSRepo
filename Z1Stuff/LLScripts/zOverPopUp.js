@@ -18,7 +18,8 @@ var conPrEdit = itmCon.getProperties().edit();
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
-  prEdit.setEventHandler('i.longTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
+  prEdit.setBoolean('i.enabled', true);
+  prEdit.setEventHandler('i.tap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   prEdit.commit();
 var imgBack = LL.createImage(calData.path);
 //alert(imgBack.getWidth() + 'X' + imgBack.getHeight());
