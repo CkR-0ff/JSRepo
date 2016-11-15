@@ -5,8 +5,8 @@ var pan = dsc.getItemByName("thepan");
 var pancon = pan.getContainer();
 var allItems = pancon.getItems();
 var highZ = 0;
-for (var index = 0; index < allItems.length; index++) {
-  var element = allItems[index];
+for (var index = 0; index < allItems.getLength(); index++) {
+  var element = allItems.getAt(index);
   if(pancon.getItemZIndex(element.getId()) > highZ){
     highZ = pancon.getItemZIndex(element.getId());
   }
