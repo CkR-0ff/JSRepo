@@ -29,6 +29,6 @@ if (imgBack.getWidth() < imgBack.getHeight()) {
   itmPan.setSize(((pancon.getWidth()) / imgBack.getWidth()) * (imgBack.getHeight()), pancon.getWidth());
 }
 itmPan.setPosition((pancon.getWidth() - itmPan.getWidth()) / 2, (pancon.getHeight() - itmPan.getHeight()) / 2);
-pancon.setItemZIndex(itmPan.getId(), MainData.highZ);
+pancon.setItemZIndex(itmPan.getId(), MainData.highZ+1);
 itmPan.setBoxBackground(imgBack, 'nsf');
 itmPan.setScale(0.8, 0.8);
