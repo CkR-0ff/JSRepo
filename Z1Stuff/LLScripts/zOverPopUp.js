@@ -5,7 +5,7 @@ var dsc = LL.getDesktopByName('MainDesk');
 var pan = dsc.getItemByName("thepan");
 var pancon = pan.getContainer();
 var inte = new Intent();
-var itmCon = pancon.addPanel(20, 20, 100, 100);
+var itmCon = pancon.addPanel(10, 10, 100, 100);
 //var itmCon = itmPan.getContainer();
 var prEdit = itmCon.getProperties().edit();
 prEdit.setBoolean('i.onGrid', false);
