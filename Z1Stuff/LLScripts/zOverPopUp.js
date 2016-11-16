@@ -26,7 +26,10 @@ var conPrEdit = itmCon.getProperties().edit();
 
 var intent = new Intent();
 var popTitle = itmCon.addShortcut(calData.nm, intent, 0, 0);
-popTitle.getProperties().edit().setBoolean('i.onGrid', false).commit();
+popTitle.getProperties().edit()
+  .setBoolean('i.onGrid', false)
+  .setBoolean("s.iconVisibility", false)
+  .commit();
 popTitle.setPosition(0,0);
 popTitle.setSize(itmCon.getWidth(), itmCon.getHeight());
 
