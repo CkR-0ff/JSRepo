@@ -24,6 +24,11 @@ var conPrEdit = itmCon.getProperties().edit();
   conPrEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   conPrEdit.commit();
 
+var intent = new Intent();
+var popTitle = itmCon.addShortcut(calData.nm, intent, 0, 0);
+popTitle.getProperties().edit().setBoolean('i.onGrid', false).commit();
+popTitle.setPosition(0,0);
+popTitle.setSize(itmCon.getWidth(), itmCon.getHight());
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
