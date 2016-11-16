@@ -45,7 +45,8 @@ var popTitle = itmCon.addShortcut(calData.nm, intent, 0, 0);
 popTitle.getProperties().edit()
   .setBoolean('i.onGrid', false)
   .setBoolean("s.iconVisibility", false)
+  .setInteger('s.labelMaxLines', 3)
   .commit();
-popTitle.setSize(itmPan.getWidth(), itmPan.getHeight()/8);
-popTitle.setPosition(0,0);
+popTitle.setSize(itmPan.getWidth()-10, itmPan.getHeight()/8);
+popTitle.setPosition(5,0);
 
