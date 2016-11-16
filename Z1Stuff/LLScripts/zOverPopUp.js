@@ -30,8 +30,8 @@ popTitle.getProperties().edit()
   .setBoolean('i.onGrid', false)
   .setBoolean("s.iconVisibility", false)
   .commit();
+popTitle.setSize(itmPan.getWidth(), itmPan.getHeight()/8);
 popTitle.setPosition(0,0);
-popTitle.setSize(itmPan.getWidth(), itmPan.getHeight());
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
