@@ -28,7 +28,7 @@ var intent = new Intent();
 var popTitle = itmCon.addShortcut(calData.nm, intent, 0, 0);
 popTitle.getProperties().edit().setBoolean('i.onGrid', false).commit();
 popTitle.setPosition(0,0);
-popTitle.setSize(itmCon.getWidth(), itmCon.getHight());
+popTitle.setSize(itmCon.getWidth(), itmCon.getHeight());
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
