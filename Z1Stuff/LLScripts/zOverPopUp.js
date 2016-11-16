@@ -19,19 +19,10 @@ var itmCon = itmPan.getContainer();
 var conPrEdit = itmCon.getProperties().edit();
   conPrEdit.setString("gridPColumnMode", "NUM");
   conPrEdit.setString("gridPRowMode", "NUM");
-  conPrEdit.setInteger("gridPColumnNum", 1);
-  conPrEdit.setInteger("gridPRowNum", 1);
+  conPrEdit.setInteger("gridPColumnNum", 4);
+  conPrEdit.setInteger("gridPRowNum", 8);
   conPrEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   conPrEdit.commit();
-
-var intent = new Intent();
-var popTitle = itmCon.addShortcut(calData.nm, intent, 0, 0);
-popTitle.getProperties().edit()
-  .setBoolean('i.onGrid', false)
-  .setBoolean("s.iconVisibility", false)
-  .commit();
-popTitle.setSize(itmPan.getWidth(), itmPan.getHeight()/8);
-popTitle.setPosition(0,0);
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
@@ -47,3 +38,14 @@ itmPan.setPosition((pancon.getWidth() - itmPan.getWidth()) / 2, (pancon.getHeigh
 pancon.setItemZIndex(itmPan.getId(), highZ+1);
 itmPan.setBoxBackground(imgBack, 'nsf');
 itmPan.setScale(0.8, 0.8);
+
+//create top shortcut for Title
+var intent = new Intent();
+var popTitle = itmCon.addShortcut(calData.nm, intent, 0, 0);
+popTitle.getProperties().edit()
+  .setBoolean('i.onGrid', false)
+  .setBoolean("s.iconVisibility", false)
+  .commit();
+popTitle.setSize(itmPan.getWidth(), itmPan.getHeight()/8);
+popTitle.setPosition(0,0);
+
