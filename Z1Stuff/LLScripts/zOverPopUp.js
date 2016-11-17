@@ -26,6 +26,7 @@ var conPrEdit = itmCon.getProperties().edit();
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
+  prEdit.setBoolean('i.pinMode','Y');
   prEdit.commit();
 var imgBack = LL.createImage(calData.path);
 //alert(imgBack.getWidth() + 'X' + imgBack.getHeight());
@@ -49,4 +50,7 @@ popTitle.getProperties().edit()
   .commit();
 popTitle.setSize(itmPan.getWidth()-10, itmPan.getHeight()/8);
 popTitle.setPosition(5,0);
+
+
+//creating the info and bottons grid...
 
