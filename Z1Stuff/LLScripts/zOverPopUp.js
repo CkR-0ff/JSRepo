@@ -26,7 +26,7 @@ var conPrEdit = itmCon.getProperties().edit();
 
 var prEdit = itmPan.getProperties().edit();
   prEdit.setBoolean('i.onGrid', false);
-  prEdit.setBoolean('i.pinMode','Y');
+  prEdit.setString('i.pinMode','Y');
   prEdit.commit();
 var imgBack = LL.createImage(calData.path);
 //alert(imgBack.getWidth() + 'X' + imgBack.getHeight());
