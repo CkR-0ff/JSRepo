@@ -53,7 +53,7 @@ var linksList = function(links){
         'torr': '' + links[i].nextSibling.nextSibling.href,
         'seed': 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 
                 'Leech: ' + lee.firstChild.firstChild.innerHTML,
-        'size': '' + siz.innerHTML,
+        'size': '',
         'date': '',
         'type': '' 
       };
