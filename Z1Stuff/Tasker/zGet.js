@@ -47,6 +47,8 @@ var linksList = function(links){
       var siz = see.previousSibling.previousSibling;
       var dte = siz.previousSibling;
       
+      flash('lee' +lee, 'see' +see, 'siz' +siz, 'lee' +dte);
+      
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
