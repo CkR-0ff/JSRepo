@@ -60,4 +60,4 @@ popDownIcon.getProperties().edit()
   .setBoolean('s.iconVisibility', true)
   .setBoolean('s.labelVisibility', false)
   .commit();
-popDownIcon.setCell(0,7,1,7);
+popDownIcon.setCell(0,7,1,8);
