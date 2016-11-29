@@ -47,13 +47,13 @@ var linksList = function(links){
       var dte = siz.previousSibling;
       
       var zel = {
-        nm: links[i].firstChild.innerHTML,
-        path: global('%taskerJsDir') + (j+1) + global('%imgStandard'),
-        torr: links[i].nextSibling.nextSibling.href,
-        seed: 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
-        size: '' + siz.innerHTML,
-        date: '' + dte.firstChild.innerHTML,
-        type: '' + typ.title
+        'nm': '' + links[i].firstChild.innerHTML,
+        'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
+        'torr': '' + links[i].nextSibling.nextSibling.href,
+        'seed': 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
+        'size': '' + siz.innerHTML,
+        'date': '' + dte.firstChild.innerHTML,
+        'type': '' + typ.title
       };
       j++;
       zelems.push(zel);
