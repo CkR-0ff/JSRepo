@@ -47,7 +47,7 @@ var linksList = function(links){
       var siz = see.previousSibling.previousSibling;
       var dte = siz.previousSibling;
       
-      flash('lee' +lee, 'see' +see, 'siz' +siz, 'lee' +dte);
+      flash('lee' +lee + '\r\n see' +see+'\r\n siz' +siz+ '\r\n lee' +dte);
       
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
