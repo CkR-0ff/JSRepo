@@ -57,7 +57,8 @@ var intent = new Intent();
 var popDownIcon = itmCon.addShortcut('sdsds', intent, 0, 0);
 popDownIcon.getProperties().edit()
   .setBoolean('i.onGrid', true)
-  .setBoolean("s.iconVisibility", true)
+  .setBoolean('s.iconVisibility', true)
+  .setBoolean('s.labelVisibility', false)
   .commit();
 popDownIcon.setSize(itmPan.getWidth()-10, itmPan.getHeight()/8);
-popDownIcon.setCell(0,7,1,8);
+popDownIcon.setCell(0,7,1,7);
