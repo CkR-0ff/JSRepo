@@ -57,7 +57,7 @@ var linksList = function(links){
       };
       j++;
       zelems.push(zel);
-      
+      flash('tuk');
       var imgLink = parseTip(links[i].getAttribute('onmouseover'));
       zimgs.push(imgLink);
       
@@ -80,4 +80,3 @@ var JSONify = function(arr){
 JSONify(zelems);
 
 var jsnstring = JSON.stringify(jsnObj);
-flash(jsnstring);
