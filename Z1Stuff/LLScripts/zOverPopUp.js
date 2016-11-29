@@ -54,10 +54,12 @@ popTitle.setPosition(5,0);
 
 //creating the info and bottons grid...
 var intent = new Intent();
-var popDownIcon = itmCon.addShortcut('sdsds', intent, 0, 0);
+var popDownIcon = itmCon.addShortcut('', intent, 0, 0);
+var downImg = LL.createImage('sdcard/Tasker/TJSFs/downImg.png');
 popDownIcon.getProperties().edit()
   .setBoolean('i.onGrid', true)
   .setBoolean('s.iconVisibility', true)
   .setBoolean('s.labelVisibility', false)
   .commit();
 popDownIcon.setCell(0,7,1,8);
+popDownIcon.setImage(downImg);
