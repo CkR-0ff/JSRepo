@@ -74,9 +74,10 @@ var zelcount = zelems.length;
 var jsnObj = {data: []};
 
 var JSONify = function(arr){
-   jsnObj.data = arr
+   jsnObj.data = arr;
 };
 
 JSONify(zelems);
 
 var jsnstring = JSON.stringify(jsnObj);
+flash(jsnstring);
