@@ -39,6 +39,7 @@ var linksList = function(links){
   var j = 0;
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
+      flash('tuk');
       var row = links[i].parentNode.parentNode;
       var typ = row.firstChild.firstChild.firstChild;
       var lee = row.lastChild;
