@@ -52,7 +52,7 @@ var linksList = function(links){
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
         'torr': '' + links[i].nextSibling.nextSibling.href,
         'seed': 'Seed: ' + ' / ' + 
-                'Leech: ' + lee.firstChild.firstChild.innerHTML,
+                'Leech: ',
         'size': '' + siz.innerHTML,
         'date': '' + dte.firstChild.innerHTML,
         'type': '' + typ.title
