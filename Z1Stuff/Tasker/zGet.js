@@ -1,5 +1,6 @@
 var zelems = [];
 var zimgs = [];
+var torrlinks = [];
 
 var zGet = function(zPagePath){
   var ret = readFile(zPagePath);
@@ -35,11 +36,31 @@ var parseTip = function(msg){
 };
 
 var linksList = function(links){
+  var j = 0;
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
-      zelems.push(links[i].firstChild.innerHTML);
+      var row = links[i].parentNode.parentNode;
+      var typ = row.firstChild.firstChild.firstChild;
+      var lee = row.lastChild;
+      var see = lee.previousSibling;
+      var siz = see.previousSibling.previousSibling;
+      var dte = siz.previousSibling;
+      
+      var zel = {
+        nm: links[i].firstChild.innerHTML,
+        path: global('%taskerJsDir') + (j+1) + global('%imgStandard'),
+        torr: links[i].nextSibling.href,
+        seed: 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
+        size: ''+ siz.textContent,
+        date: ''+dte.firstChild.innerHTML.replace('<br>', '/'),
+        type: ''+typ.title
+      };
+      j++;
+      zelems.push(zel);
+      
       var imgLink = parseTip(links[i].getAttribute('onmouseover'));
       zimgs.push(imgLink);
+      
     }
   }
 };
@@ -53,18 +74,7 @@ var zelcount = zelems.length;
 var jsnObj = {data: []};
 
 var JSONify = function(arr){
-  for (var i = 0; i < arr.length; i++) {
-    var el = arr[i];
-    var jsn = {
-      nm: el,
-      path: global('%taskerJsDir') + (i+1) + global('%imgStandard'),
-      torr: '',
-      seed: '',
-      date: '',
-      type: ''
-    };
-    jsnObj.data.push(jsn);
-  }
+   jsnObj.data = arr
 };
 
 JSONify(zelems);

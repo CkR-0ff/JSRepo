@@ -53,6 +53,7 @@ popTitle.setPosition(5,0);
 
 
 //creating the info and bottons grid...
+  // download button
 var intent = new Intent();
 var popDownIcon = itmCon.addShortcut('', intent, 0, 0);
 var downImg = LL.createImage('sdcard/Tasker/TJSFs/downImg.png');
@@ -63,3 +64,13 @@ popDownIcon.getProperties().edit()
   .commit();
 popDownIcon.setCell(0,7,1,8);
 popDownIcon.setImage(downImg);
+
+  //seed info
+
+
+
+  //torrent type
+
+
+
+  //
