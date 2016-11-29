@@ -39,21 +39,21 @@ var linksList = function(links){
   var j = 0;
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
-//       var row = links[i].parentNode.parentNode;
-//       var typ = row.firstChild.firstChild.firstChild;
-//       var lee = row.lastChild;
-//       var see = lee.previousSibling;
-//       var siz = see.previousSibling.previousSibling;
-//       var dte = siz.previousSibling;
+      var row = links[i].parentNode.parentNode;
+      var typ = row.firstChild.firstChild.firstChild;
+      var lee = row.lastChild;
+      var see = lee.previousSibling;
+      var siz = see.previousSibling.previousSibling;
+      var dte = siz.previousSibling;
       
       var zel = {
-        nm: '',//links[i].firstChild.innerHTML,
-        path: '',//global('%taskerJsDir') + (j+1) + global('%imgStandard'),
-        torr: '',//links[i].nextSibling.href,
-        seed: '',//'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
-        size: '',//'' + siz.innerHTML.replace('<br>', '/'),
-        date: '',//'' + dte.firstChild.innerHTML.replace('<br>', '/'),
-        type: ''//'' + typ.title
+        nm: links[i].firstChild.innerHTML,
+        path: global('%taskerJsDir') + (j+1) + global('%imgStandard'),
+        torr: links[i].nextSibling.nextSibling.href,
+        seed: 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
+        size: '' + siz.innerHTML,
+        date: '' + dte.firstChild.innerHTML,
+        type: '' + typ.title
       };
       j++;
       zelems.push(zel);
