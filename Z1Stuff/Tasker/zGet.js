@@ -36,7 +36,6 @@ var parseTip = function(msg){
 };
 
 var linksList = function(links){
-  flash('tuk');
   var j = 0;
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
@@ -52,9 +51,9 @@ var linksList = function(links){
         path: global('%taskerJsDir') + (j+1) + global('%imgStandard'),
         torr: links[i].nextSibling.href,
         seed: 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
-        size: ''+ siz.textContent,
-        date: ''+dte.firstChild.innerHTML.replace('<br>', '/'),
-        type: ''+typ.title
+        size: '' + siz.innerHTML.replace('<br>', '/'),
+        date: '' + dte.firstChild.innerHTML.replace('<br>', '/'),
+        type: '' + typ.title
       };
       j++;
       zelems.push(zel);
@@ -67,6 +66,7 @@ var linksList = function(links){
 };
 
 var rsp = zGet(global('%ZResp'));
+flash('tuk');
 var respdoc = respToDoc(rsp);
 var linksarr = elemsToArr(respdoc);
 linksList(linksarr);
