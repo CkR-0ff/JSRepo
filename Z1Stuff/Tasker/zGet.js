@@ -50,7 +50,7 @@ var linksList = function(links){
       flash('lee ' +lee + 
             '\r\n see ' +see+
             '\r\n siz ' +siz+
-            '\r\n lee ' +dte.title);
+            '\r\n lee ' +dte.firstChild.innerHTML);
       
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
