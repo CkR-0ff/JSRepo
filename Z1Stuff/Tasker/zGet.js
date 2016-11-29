@@ -50,12 +50,12 @@ var linksList = function(links){
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
-        'torr': '',
-        'seed': 'Seed: ' + ' / ' + 
-                'Leech: ',
+        'torr': '' + links[i].nextSibling.nextSibling.href,
+        'seed': 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 
+                'Leech: ' + lee.firstChild.firstChild.innerHTML,
         'size': '' + siz.innerHTML,
-        'date': '' + dte.firstChild.innerHTML,
-        'type': '' + typ.title
+        'date': '',
+        'type': '' 
       };
       j++;
       flash('tuk4');
