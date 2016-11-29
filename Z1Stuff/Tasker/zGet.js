@@ -36,6 +36,7 @@ var parseTip = function(msg){
 };
 
 var linksList = function(links){
+  flash('tuk');
   var j = 0;
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
@@ -57,7 +58,7 @@ var linksList = function(links){
       };
       j++;
       zelems.push(zel);
-      flash('tuk');
+      
       var imgLink = parseTip(links[i].getAttribute('onmouseover'));
       zimgs.push(imgLink);
       
