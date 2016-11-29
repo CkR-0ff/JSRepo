@@ -42,10 +42,10 @@ var linksList = function(links){
       
       var row = links[i].parentNode.parentNode;
       var typ = row.firstChild.firstChild.firstChild;
-      var lee = row.lastChild;
-      var see = lee.previousSibling;
-      var siz = see.previousSibling.previousSibling;
-      var dte = siz.previousSibling;
+      var lee = row.lastChild.previousSibling;
+      var see = lee.previousSibling.previousSibling;
+      var siz = see.previousSibling.previousSibling.previousSibling.previousSibling;
+      var dte = siz.previousSibling.previousSibling;
       
       flash('lee' +lee + '\r\n see' +see+'\r\n siz' +siz+ '\r\n lee' +dte);
       
@@ -53,7 +53,10 @@ var linksList = function(links){
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
         'torr': '' + links[i].nextSibling.nextSibling.href,
-        
+        'seed': 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 
+                'Leech: ' + lee.firstChild.firstChild.innerHTML,
+        'size': '' + siz.innerHTML,
+        'date': '' + dte.firstChild.innerHTML,
         'type': '' + typ.title
       };
       j++;
