@@ -51,10 +51,8 @@ var linksList = function(links){
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
         'torr': '' + links[i].nextSibling.nextSibling.href,
-        'seed': 'Seed: ' ,
-        'size': '',
-        'date': '',
-        'type': '' 
+        
+        'type': '' + typ.title
       };
       j++;
       flash('tuk4');
