@@ -57,7 +57,11 @@ var JSONify = function(arr){
     var el = arr[i];
     var jsn = {
       nm: el,
-      path: global('%taskerJsDir') + (i+1) + global('%imgStandard')
+      path: global('%taskerJsDir') + (i+1) + global('%imgStandard'),
+      torr: '',
+      seed: '',
+      date: '',
+      type: ''
     };
     jsnObj.data.push(jsn);
   }
