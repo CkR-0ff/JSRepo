@@ -50,8 +50,9 @@ var linksList = function(links){
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
-        'torr': '' ,
-        'seed': 'Seed: ',
+        'torr': '' + links[i].nextSibling.nextSibling.href,
+        'seed': 'Seed: ' + ' / ' + 
+                'Leech: ' + lee.firstChild.firstChild.innerHTML,
         'size': '' + siz.innerHTML,
         'date': '' + dte.firstChild.innerHTML,
         'type': '' + typ.title
