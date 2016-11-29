@@ -39,24 +39,24 @@ var linksList = function(links){
   var j = 0;
   for(var i=0;i<links.length;i++){
     if(links[i].firstChild.nodeName == 'B'){	
-      var row = links[i].parentNode.parentNode;
-      var typ = row.firstChild.firstChild.firstChild;
-      var lee = row.lastChild;
-      var see = lee.previousSibling;
-      var siz = see.previousSibling.previousSibling;
-      var dte = siz.previousSibling;
+//       var row = links[i].parentNode.parentNode;
+//       var typ = row.firstChild.firstChild.firstChild;
+//       var lee = row.lastChild;
+//       var see = lee.previousSibling;
+//       var siz = see.previousSibling.previousSibling;
+//       var dte = siz.previousSibling;
       
-      var zel = {
-        nm: links[i].firstChild.innerHTML,
-        path: global('%taskerJsDir') + (j+1) + global('%imgStandard'),
-        torr: links[i].nextSibling.href,
-        seed: 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
-        size: '' + siz.innerHTML.replace('<br>', '/'),
-        date: '' + dte.firstChild.innerHTML.replace('<br>', '/'),
-        type: '' + typ.title
-      };
-      j++;
-      zelems.push(zel);
+//       var zel = {
+//         nm: links[i].firstChild.innerHTML,
+//         path: global('%taskerJsDir') + (j+1) + global('%imgStandard'),
+//         torr: links[i].nextSibling.href,
+//         seed: 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 'Leech: ' + lee.firstChild.firstChild.innerHTML,
+//         size: '' + siz.innerHTML.replace('<br>', '/'),
+//         date: '' + dte.firstChild.innerHTML.replace('<br>', '/'),
+//         type: '' + typ.title
+//       };
+//       j++;
+      zelems.push('zel');
       
       var imgLink = parseTip(links[i].getAttribute('onmouseover'));
       zimgs.push(imgLink);
@@ -66,7 +66,6 @@ var linksList = function(links){
 };
 
 var rsp = zGet(global('%ZResp'));
-flash('tuk');
 var respdoc = respToDoc(rsp);
 var linksarr = elemsToArr(respdoc);
 linksList(linksarr);
