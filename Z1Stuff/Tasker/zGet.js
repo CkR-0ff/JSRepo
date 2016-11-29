@@ -51,8 +51,7 @@ var linksList = function(links){
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
         'torr': '' + links[i].nextSibling.nextSibling.href,
-        'seed': 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 
-                'Leech: ' + lee.firstChild.firstChild.innerHTML,
+        'seed': 'Seed: ' ,
         'size': '',
         'date': '',
         'type': '' 
