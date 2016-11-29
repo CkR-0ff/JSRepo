@@ -49,8 +49,8 @@ var linksList = function(links){
       
       flash('lee ' +lee + 
             '\r\n see ' +see+
-            '\r\n siz ' +siz+
-            '\r\n lee ' +dte.firstChild.innerHTML);
+            '\r\n siz ' +siz.innerHTML+
+            '\r\n lee ' +dte.title);
       
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
