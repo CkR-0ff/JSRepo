@@ -46,7 +46,7 @@ var linksList = function(links){
       var see = lee.previousSibling;
       var siz = see.previousSibling.previousSibling;
       var dte = siz.previousSibling;
-      flash('tuk3');
+      
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
@@ -57,7 +57,7 @@ var linksList = function(links){
         'type': '' + typ.title
       };
       j++;
-      
+      flash('tuk4');
       zelems.push(zel);
       
       var imgLink = parseTip(links[i].getAttribute('onmouseover'));
