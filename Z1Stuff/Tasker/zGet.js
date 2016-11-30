@@ -47,10 +47,12 @@ var linksList = function(links){
       var siz = see.previousSibling.previousSibling.previousSibling.previousSibling;
       var dte = siz.previousSibling.previousSibling;
       
-//       flash('lee ' +lee.firstChild.firstChild.innerHTML + 
-//             '\r\n see ' +see.firstChild.firstChild.firstChild.innerHTML+
-//             '\r\n siz ' +siz.innerHTML+
-//             '\r\n lee ' +dte.firstChild.innerHTML);
+       flash(
+             //'lee ' +lee.firstChild.firstChild.innerHTML + 
+             '\r\n see ' +see.firstChild.firstChild.firstChild.innerHTML+
+             '\r\n siz ' +siz.innerHTML+
+             '\r\n lee ' +dte.firstChild.innerHTML
+       );
       
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
