@@ -49,7 +49,7 @@ var linksList = function(links){
       
        flash(
              //'lee ' +lee.firstChild.firstChild.innerHTML + 
-             '\r\n see ' +see.firstChild.firstChild.firstChild.innerHTML+
+             //'\r\n see ' +see.firstChild.firstChild.firstChild.innerHTML+
              '\r\n siz ' +siz.innerHTML+
              '\r\n lee ' +dte.firstChild.innerHTML
        );
