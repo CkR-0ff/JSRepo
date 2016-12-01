@@ -9,7 +9,7 @@ var gitApiGet = function(repo, dir){
 		var jsn = JSON.parse(xhr.responseText);
 		jsn.forEach(function(el,id,arr){
 			if(el.type == "file"){
-				dlinks.push(el.download_url.replace('.githubusercontent', 'git'));//tr
+				dlinks.push(el.download_url);
 				ddirs.push(dir+'/'+el.name);
 			}
 			else if(el.type == "dir"){
