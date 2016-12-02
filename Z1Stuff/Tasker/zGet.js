@@ -46,14 +46,7 @@ var linksList = function(links){
       var see = lee.previousSibling.previousSibling;
       var siz = see.previousSibling.previousSibling.previousSibling.previousSibling;
       var dte = siz.previousSibling.previousSibling;
-      
-//        flash(
-//              'lee ' +lee.textContent + 
-//              '\r\n see ' +see.textContent+
-//              '\r\n siz ' +siz.textContent+
-//              '\r\n lee ' +dte.firstChild.innerHTML
-//        );
-      
+            
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
@@ -61,7 +54,7 @@ var linksList = function(links){
          'seed': 'Seed: ' + see.textContent + ' / ' + 
                  'Leech: ' + lee.textContent,
          'size': '' + siz.textContent,
-         'date': '' + dte.textContent,
+         'date': '' + dte.textContent.substr(0,dte.textContent.length-8) + '/' + dte.textContent.substr(-8),
         'type': '' + typ.title
       };
       j++;
