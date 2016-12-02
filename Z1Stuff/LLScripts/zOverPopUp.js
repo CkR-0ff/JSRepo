@@ -20,7 +20,7 @@ var conPrEdit = itmCon.getProperties().edit();
   conPrEdit.setString("gridPColumnMode", "NUM");
   conPrEdit.setString("gridPRowMode", "NUM");
   conPrEdit.setInteger("gridPColumnNum", 4);
-  conPrEdit.setInteger("gridPRowNum", 16);
+  conPrEdit.setInteger("gridPRowNum", 32);
   conPrEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   conPrEdit.commit();
 
@@ -63,7 +63,7 @@ popDownIcon.getProperties().edit()
   .setBoolean('s.iconVisibility', true)
   .setBoolean('s.labelVisibility', false)
   .commit();
-popDownIcon.setCell(0,14,1,16);
+popDownIcon.setCell(0,28,1,32);
 popDownIcon.setImage(downImg);
 
   //seed info
