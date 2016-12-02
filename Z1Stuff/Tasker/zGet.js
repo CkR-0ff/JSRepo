@@ -48,8 +48,8 @@ var linksList = function(links){
       var dte = siz.previousSibling.previousSibling;
       
        flash(
-             //'lee ' +lee.firstChild.firstChild.innerHTML + 
-             //'\r\n see ' +see.firstChild.firstChild.firstChild.innerHTML+
+             'lee ' +lee.firstChild.firstChild.innerHTML + 
+             '\r\n see ' +see.firstChild.firstChild.firstChild.innerHTML+
              '\r\n siz ' +siz.innerHTML+
              '\r\n lee ' +dte.firstChild.innerHTML
        );
@@ -57,12 +57,12 @@ var linksList = function(links){
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
-        'torr': '' + links[i].nextSibling.nextSibling.href,
+//        'torr': '' + links[i].nextSibling.nextSibling.href,
 //         'seed': 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 
 //                 'Leech: ' + lee.firstChild.firstChild.innerHTML,
 //         'size': '' + siz.innerHTML,
 //         'date': '' + dte.firstChild.innerHTML,
-        'type': '' + typ.title
+//        'type': '' + typ.title
       };
       j++;
       zelems.push(zel);
