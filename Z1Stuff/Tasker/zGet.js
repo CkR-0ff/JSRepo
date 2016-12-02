@@ -47,22 +47,22 @@ var linksList = function(links){
       var siz = see.previousSibling.previousSibling.previousSibling.previousSibling;
       var dte = siz.previousSibling.previousSibling;
       
-       flash(
-             'lee ' +lee.textContent + 
-             '\r\n see ' +see.textContent+
-             '\r\n siz ' +siz.textContent+
-             '\r\n lee ' +dte.firstChild.innerHTML
-       );
+//        flash(
+//              'lee ' +lee.textContent + 
+//              '\r\n see ' +see.textContent+
+//              '\r\n siz ' +siz.textContent+
+//              '\r\n lee ' +dte.firstChild.innerHTML
+//        );
       
       var zel = {
         'nm': '' + links[i].firstChild.innerHTML,
         'path': '' + global('%taskerJsDir') + (j+1) + global('%imgStandard'),
-//        'torr': '' + links[i].nextSibling.nextSibling.href,
-//         'seed': 'Seed: ' + see.firstChild.firstChild.firstChild.innerHTML + ' / ' + 
-//                 'Leech: ' + lee.firstChild.firstChild.innerHTML,
-//         'size': '' + siz.innerHTML,
-//         'date': '' + dte.firstChild.innerHTML,
-//        'type': '' + typ.title
+        'torr': '' + links[i].nextSibling.nextSibling.href,
+         'seed': 'Seed: ' + see.textContent + ' / ' + 
+                 'Leech: ' + lee.textContent,
+         'size': '' + siz.textContent,
+         'date': '' + dte.textContent,
+        'type': '' + typ.title
       };
       j++;
       zelems.push(zel);
