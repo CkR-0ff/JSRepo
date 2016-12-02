@@ -1,7 +1,7 @@
 var sender = LL.getEvent().getItem();
-var data = JSON.parse(sender.getTag('inData'));
+var trLink = sender.getTag('torrLink');
 if ( TaskerIntent.testStatus( this ).equals( TaskerIntent.Status.OK ) ) { 
 	TaskerIntent intn = new TaskerIntent( "GetTorrent" );
-	intn.addVariable( "%torlink", "value" );
-	sendBroadcast( intn );
+	intn.addVariable( "%torrlink", trLink );
+	intn.sendBroadcast( intn );
 }

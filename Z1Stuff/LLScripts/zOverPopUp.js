@@ -20,7 +20,7 @@ var conPrEdit = itmCon.getProperties().edit();
   conPrEdit.setString("gridPColumnMode", "NUM");
   conPrEdit.setString("gridPRowMode", "NUM");
   conPrEdit.setInteger("gridPColumnNum", 4);
-  conPrEdit.setInteger("gridPRowNum", 8);
+  conPrEdit.setInteger("gridPRowNum", 16);
   conPrEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   conPrEdit.commit();
 
@@ -54,15 +54,16 @@ popTitle.setPosition(5,0);
 
 //creating the info and bottons grid...
   // download button
-var intent = new Intent();
+var intent = new Intent(Intent.parseUri("#Intent;component=net.pierrox.lightning_launcher_extreme/net.pierrox.lightning_launcher.activities.Dashboard;i.a=35;S.d=8;end", 0).setAction(Intent.ACTION_VIEW));
 var popDownIcon = itmCon.addShortcut('', intent, 0, 0);
+popDownIcon.setTag('torrLink', calData.torr);
 var downImg = LL.createImage('sdcard/Tasker/TJSFs/downImg.png');
 popDownIcon.getProperties().edit()
   .setBoolean('i.onGrid', true)
   .setBoolean('s.iconVisibility', true)
   .setBoolean('s.labelVisibility', false)
   .commit();
-popDownIcon.setCell(0,7,1,8);
+popDownIcon.setCell(0,14,1,16);
 popDownIcon.setImage(downImg);
 
   //seed info
