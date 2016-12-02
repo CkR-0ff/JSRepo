@@ -68,7 +68,17 @@ popDownIcon.setImage(downImg);
 
   //seed info
 
-
+var intent = new Intent();
+var popSeed = itmCon.addShortcut(calData.seed, intent, 0, 0);
+popSeed.getProperties().edit()
+  .setBoolean('i.onGrid', true)
+  .setBoolean('i.enabled', false)
+  .setBoolean("s.iconVisibility", false)
+  .setInteger('s.labelMaxLines', 1)
+  .commit();
+//popTitle.setSize(itmPan.getWidth()-10, itmPan.getHeight()/8);
+//popSeed.setPosition(5,0);
+popSeed.setCell(1,28,3,29);
 
   //torrent type
 
