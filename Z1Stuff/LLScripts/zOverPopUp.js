@@ -64,7 +64,6 @@ popDownIcon.getProperties().edit()
   .setBoolean('i.onGrid', true)
   .setBoolean('s.iconVisibility', true)
   .setBoolean('s.labelVisibility', false)
-  .getBox('i.box').setColor("c", "ns", 0xff000000)
   .commit();
 popDownIcon.setCell(0,21,1,24);
 popDownIcon.setImage(downImg);
