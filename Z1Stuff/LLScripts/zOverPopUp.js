@@ -48,6 +48,7 @@ popTitle.getProperties().edit()
   .setBoolean('i.enabled',false)
   .setBoolean("s.iconVisibility", false)
   .setInteger('s.labelMaxLines', 3)
+  .setFloat('s.labelFontSize', 20)
   .commit();
 popTitle.setSize(itmPan.getWidth()-10, itmPan.getHeight()/8);
 popTitle.setPosition(5,0);
@@ -64,10 +65,10 @@ popDownIcon.getProperties().edit()
   .setBoolean('s.iconVisibility', true)
   .setBoolean('s.labelVisibility', false)
   .commit();
-popDownIcon.setCell(0,20,1,24);
+popDownIcon.setCell(0,21,1,24);
 popDownIcon.setImage(downImg);
 
-  //seed info
+  //all info
 
 var intent = new Intent();
 var popSeed = itmCon.addShortcut(calData.seed, intent, 0, 0);
