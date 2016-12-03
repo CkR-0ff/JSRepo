@@ -20,7 +20,7 @@ var conPrEdit = itmCon.getProperties().edit();
   conPrEdit.setString("gridPColumnMode", "NUM");
   conPrEdit.setString("gridPRowMode", "NUM");
   conPrEdit.setInteger("gridPColumnNum", 4);
-  conPrEdit.setInteger("gridPRowNum", 32);
+  conPrEdit.setInteger("gridPRowNum", 24);
   conPrEdit.setEventHandler('bgDoubleTap',EventHandler.RUN_SCRIPT,LL.getScriptByName('DblTapClose').getId());
   conPrEdit.commit();
 
@@ -45,6 +45,7 @@ var intent = new Intent();
 var popTitle = itmCon.addShortcut(calData.nm, intent, 0, 0);
 popTitle.getProperties().edit()
   .setBoolean('i.onGrid', false)
+  .setBoolean('i.enabled',false)
   .setBoolean("s.iconVisibility", false)
   .setInteger('s.labelMaxLines', 3)
   .commit();
@@ -63,7 +64,7 @@ popDownIcon.getProperties().edit()
   .setBoolean('s.iconVisibility', true)
   .setBoolean('s.labelVisibility', false)
   .commit();
-popDownIcon.setCell(0,28,1,32);
+popDownIcon.setCell(0,20,1,24);
 popDownIcon.setImage(downImg);
 
   //seed info
@@ -76,9 +77,37 @@ popSeed.getProperties().edit()
   .setBoolean("s.iconVisibility", false)
   .setInteger('s.labelMaxLines', 1)
   .commit();
-//popTitle.setSize(itmPan.getWidth()-10, itmPan.getHeight()/8);
-//popSeed.setPosition(5,0);
-popSeed.setCell(1,28,3,29);
+popSeed.setCell(1,20,3,21);
+
+var intent = new Intent();
+var popSeed = itmCon.addShortcut(calData.size, intent, 0, 0);
+popSeed.getProperties().edit()
+  .setBoolean('i.onGrid', true)
+  .setBoolean('i.enabled', false)
+  .setBoolean("s.iconVisibility", false)
+  .setInteger('s.labelMaxLines', 1)
+  .commit();
+popSeed.setCell(1,21,3,22);
+
+var intent = new Intent();
+var popSeed = itmCon.addShortcut(calData.date, intent, 0, 0);
+popSeed.getProperties().edit()
+  .setBoolean('i.onGrid', true)
+  .setBoolean('i.enabled', false)
+  .setBoolean("s.iconVisibility", false)
+  .setInteger('s.labelMaxLines', 1)
+  .commit();
+popSeed.setCell(1,22,3,23);
+
+var intent = new Intent();
+var popSeed = itmCon.addShortcut(calData.type, intent, 0, 0);
+popSeed.getProperties().edit()
+  .setBoolean('i.onGrid', true)
+  .setBoolean('i.enabled', false)
+  .setBoolean("s.iconVisibility", false)
+  .setInteger('s.labelMaxLines', 1)
+  .commit();
+popSeed.setCell(1,23,3,24);
 
   //torrent type
 
