@@ -1,7 +1,8 @@
 var sentJSON = LL.getEvent().getData();
 var sentData = JSON.parse(sentJSON);
-var currentDay = {};
+var currentDay;
 var tuday = Date.now();
+var datesOnly;
 
 var setCurrentDay = function(alldays){
   for(var i=0;i<alldays.length;i++){
@@ -13,3 +14,10 @@ var setCurrentDay = function(alldays){
   }
 };
 setCurrentDay(sentData);
+
+datesOnly = sentData.map(a => a.day);
+
+flash(datesOnly.join(','));
+
+var dsc = LL.getDesktopByName('MainDesk');
+var pan = dsc.getItemByName('NamesWidget');
