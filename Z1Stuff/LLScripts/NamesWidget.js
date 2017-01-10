@@ -15,7 +15,7 @@ var setCurrentDay = function(alldays){
 };
 setCurrentDay(sentData);
 
-datesOnly = sentData.map(a => a.day);
+datesOnly = sentData.map(function(a) { return a.day } );
 
 flash(datesOnly.join(','));
 
