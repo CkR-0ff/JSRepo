@@ -9,7 +9,7 @@ javascript: (
 	}
       }
     }
-    
+     
     if(!exists){
       var done = false;
       var scr = document.createElement('script');
