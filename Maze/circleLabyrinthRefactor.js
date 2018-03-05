@@ -152,10 +152,10 @@ var _labDrawer = {
 	CANVAS			: undefined,
 	CTX				: undefined,
 	
-	InnerRadius		: 10, 
+	InnerRadius		: 7, 
 	RadiusIncrement	: 7, 
 		
-	LineColor		: "#0000FF",
+	LineColor		: "#FF0000",
 	LineWidth		: 1,
 	CanvasWidth		: 500,
 	CanvasHeight	: 500,
@@ -170,8 +170,6 @@ var _labDrawer = {
 				this.CANVAS = document.createElement('canvas');
 			
 				this.CANVAS.id = "mazeCanvas";
-				this.CANVAS.width = this.CanvasWidth;
-				this.CANVAS.height = this.CanvasHeight;
 				this.CANVAS.style.zIndex = 1000;
 				this.CANVAS.style.position = "relative";
 				this.CANVAS.style.top = 0;
@@ -180,15 +178,20 @@ var _labDrawer = {
 				var body = document.getElementsByTagName("body")[0];
 				body.appendChild(this.CANVAS);
 			}
+			this.CANVAS.height = this.CANVAS.clientHeight;
+			this.CANVAS.width  = this.CANVAS.clientHeight;
 			return this.CANVAS;
 		}else{
-			return this.CANVAS
+			this.CANVAS.height = this.CANVAS.clientHeight;
+			this.CANVAS.width  = this.CANVAS.clientHeight;
+			return this.CANVAS;
 		}
 	},
 	get newCtx()	{
 		var canv = this.canvas;
 		this.CTX = canv.getContext('2d');
 		this.CTX.strokeStyle=this.LineColor;
+		this.CTX.fillStyle=this.LineColor;
 		this.CTX.lineWidth=this.LineWidth;
 		return this.CTX;
 	},
@@ -210,6 +213,9 @@ var _labDrawer = {
 	redrawMaze		: function(){
 		var ctx = this.newCtx;
 		var arr = [];
+
+		// ctx.canvas.width  = ctx.canvas.clientWidth;
+  		// ctx.canvas.height = ctx.canvas.clientHeight;
 		
 		if(!this.Store){
 			alert('Set Initiated Maze First!');
@@ -242,7 +248,6 @@ var _labDrawer = {
 				var radInc	= radius+radiusInc;
 				
 				ctx.beginPath();
-				ctx.lineJoin = 'miter';
 				var x = x0 + radius*Math.cos(angR);
 				var y = y0 + radius*Math.sin(angR);
 				ctx.moveTo(x,y);
@@ -303,16 +308,27 @@ var _mazeController = {
 	
 	//drawer setters
 	set InnerRadius(value){
-		this.DRAWER.InnerRadius = value;
+		this.DRAWER.InnerRadius = parseInt(value);
 	}, 
+	get InnerRadius(){
+		return this.DRAWER.InnerRadius;
+	},
 	set RadiusIncrement(value){
-		this.DRAWER.RadiusIncrement = value;
+		this.DRAWER.RadiusIncrement = parseInt(value);
 	}, 
 	set LineColor(value){
 		this.DRAWER.LineColor = value;
 	},
 	set LineWidth(value){
-		this.DRAWER.LineWidth = value;
+		this.DRAWER.LineWidth = parseInt(value);
+	},
+	set fps(value){
+		this.Fps = parseInt(value);
+		if(this.IntervalId){
+			this.mazeAnimateStop();
+			this.mazeAnimate();
+		}
+		document.getElementById("lblFps").innerText = "fps(" + value + ")";
 	},
 	
 	init			: function(store, drawer){
@@ -352,8 +368,8 @@ _labStore.DIMENTIONS.Y = 30;
 _labDrawer.LineWidth = 1;
 _labDrawer.RadiusIncrement = 8;
 
-_mazeController.init(_labStore,_labDrawer);
+_mazeController.init(_labStore, _labDrawer);
 //_mazeController.STORE.direcMazePopulate();
-_mazeController.mazeAnimate(50);
+//_mazeController.mazeAnimate(50);
 
 //_mazeController.mazeAnimateStop();
