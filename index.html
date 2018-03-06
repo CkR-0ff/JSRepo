@@ -48,7 +48,8 @@
                         <label id="lblFps" title="Number of redraws per second on animate.">fps()</label><br>
                         <input type="range" value="60" min="1" max="60" step="1" onchange="_mazeController.fps = this.value;" /></div>
                 <div class="set sett5">
-                    <img src="Maze/img/colorPalette.png" height="40" width="120">
+                    <label title="Color of the walls">Color</label><br>
+                    <input id="colorInput" type="color " />
                 </div>
                 <div class="set sett6">
                     <input type="button" value="Step" onclick="_mazeController.makeStep();" />
