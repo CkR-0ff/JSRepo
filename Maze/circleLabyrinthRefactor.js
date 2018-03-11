@@ -22,6 +22,7 @@ var _labStore = {
 	MAZECELLS	: [],
 	MAZEPATH	: [],
 	DIMENTIONS	: {X:4, Y:20},
+	curCell		: undefined,
 	
 	tC:{
 		s: {X:0, Y:0},
@@ -83,17 +84,17 @@ var _labStore = {
 			this.MAZEPATH.push(newCell);
 		}
 		
-		var curCell = this.MAZEPATH[this.MAZEPATH.length-1];
-		while(curCell.dirs.length>0){
-			var curDir = curCell.dirs.pop();
+		this.curCell = this.MAZEPATH[this.MAZEPATH.length-1];
+		while(this.curCell.dirs.length>0){
+			var curDir = this.curCell.dirs.pop();
 			
-			this.tC.n.X = curCell.pos.X + this.MoveX[curDir];
-			this.tC.n.Y = curCell.pos.Y + this.MoveY[curDir];
+			this.tC.n.X = this.curCell.pos.X + this.MoveX[curDir];
+			this.tC.n.Y = this.curCell.pos.Y + this.MoveY[curDir];
 			
 			if(this.tC.n.Y>=0 && this.tC.n.Y<this.MAZECELLS.length){
-				if(curCell.pos.Y<this.tC.n.Y && this.tC.n.Y.isAccumPowerOf2){
+				if(this.curCell.pos.Y<this.tC.n.Y && this.tC.n.Y.isAccumPowerOf2){
 					this.tC.n.X = (this.rndBool) ?  this.tC.n.X*2 + 1: this.tC.n.X*2;
-				}else if(curCell.pos.Y>this.tC.n.Y && curCell.pos.Y.isAccumPowerOf2){
+				}else if(this.curCell.pos.Y>this.tC.n.Y && this.curCell.pos.Y.isAccumPowerOf2){
 					this.tC.n.X = Math.floor(this.tC.n.X/2);
 				}
 				if(this.tC.n.X<0){
@@ -103,7 +104,7 @@ var _labStore = {
 					this.tC.n.X = 0;
 				}
 				if(this.MAZECELLS[this.tC.n.Y][this.tC.n.X] === 0){
-					this.MAZECELLS[curCell.pos.Y][curCell.pos.X] |= this.DIRECTVALS[curDir];
+					this.MAZECELLS[this.curCell.pos.Y][this.curCell.pos.X] |= this.DIRECTVALS[curDir];
 					this.MAZECELLS[this.tC.n.Y][this.tC.n.X] |= this.DIRECTVALS[this.OPPOSIITES[curDir]];
 					
 					var ndirs = this.rndDIRECTIONS;
@@ -116,13 +117,13 @@ var _labStore = {
 					break;
 					//setPassage(this.tC.n.X,this.tC.n.Y, grid);
 				}else{
-					this.tC.n.X = curCell.pos.X;
-					this.tC.n.Y = curCell.pos.Y;
+					this.tC.n.X = this.curCell.pos.X;
+					this.tC.n.Y = this.curCell.pos.Y;
 					continue;
 				}
 			}else{
-				this.tC.n.X = curCell.pos.X;
-				this.tC.n.Y = curCell.pos.Y;
+				this.tC.n.X = this.curCell.pos.X;
+				this.tC.n.Y = this.curCell.pos.Y;
 				continue;
 			}
 		}
@@ -295,6 +296,21 @@ var _labDrawer = {
 		this.ClearMaze = false;
 		this.redrawMaze();
 		this.ClearMaze = true;
+	},
+	drawPositionDot	: function(){
+		var ctx = this.ctx;
+		var x0 = this.CANVAS.width/2;
+		var y0 = this.CANVAS.height/2;
+		var newCell = this.Store.MAZEPATH[this.Store.MAZEPATH.length-1];
+		var cellsNum = this.Store.MAZECELLS[newCell.pos.Y].length;
+		var angle = (360/cellsNum)*newCell.pos.X + (360/cellsNum)/2;
+		var angRads = this.getRads(angle);
+		var radius = this.InnerRadius + this.RadiusIncrement*newCell.pos.Y + this.RadiusIncrement/2;
+
+		var x = x0 + radius*Math.cos(angRads);
+		var y = y0 - radius*Math.sin(angRads);
+
+		ctx.fillRect(x-2,y-2,3,3);
 	}
 	
 };
@@ -343,6 +359,7 @@ var _mazeController = {
 			alert('Please Initiate the Controller!');
 			return;
 		}
+		
 		//debugger;
 		this.STORE.pathBuilder();
 		this.STORE.setExits();
@@ -350,6 +367,7 @@ var _mazeController = {
 		if(this.STORE.isFullMaze && this.IntervalId){
 			this.mazeAnimateStop();
 		}
+		this.DRAWER.drawPositionDot();
 	},
 	mazeAnimate		: function(){
 		this.IntervalId = setInterval(function(){
