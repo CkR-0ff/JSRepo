@@ -1,3 +1,3 @@
 # JSRepo
-Javascript training course - making Bookmarklets
+Javascript - Maze builder and making Bookmarklets(to be separated).
 
