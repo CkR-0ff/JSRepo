@@ -217,13 +217,45 @@ class StageBuilder{
             }
         }
 
-        return this.stage.setP(c, sum/divisor);
+        this.stage.setP(c, sum/divisor);
     }
     doSquareStepFor(square){
+        for (let i = 0; i < square.SidePoints.length; i++) {
+            let sum     = 0;
+            let divisor = 0;
 
+            let sidePoint = square.SidePoints[i];
+            let squarePoints = square.squarePointsFor(sidePoint);
+            for (let j = 0; j < squarePoints.length; j++) {
+                let pt = squarePoints[j];
+                if (pt.isInCube(this.stage.size)) {
+                    let val = this.stage.getP(pt);
+                    sum+=val;
+                    divisor++;
+                }
+            }
+
+            this.stage.setP(sidePoint, sum/divisor);
+        }
     }
     doDiamondStepFor(diamond){
+        for (let i = 0; i < diamond.EdgePoints.length; i++) {
+            let sum     = 0;
+            let divisor = 0;
+            
+            let edgePoint = diamond.EdgePoints[i];
+            let diamondPoints = diamond.diamondPointFor(edgePoint);
+            for (let j = 0; j < diamondPoints.length; j++) {
+                let pt = diamondPoints[j];
+                if (pt.isInCube(this.stage.size)) {
+                    let val = this.stage.getP(pt);
+                    sum+=val;
+                    divisor++;
+                }
+            }
 
+            this.stage.setP(edgePoint, sum/divisor);
+        }
     }
 
 
@@ -231,27 +263,38 @@ class StageBuilder{
     iterate(iteration){
         let subFactor = Math.pow(2,iteration);
         let subLength = this.stage.max/subFactor;
-        
+
         let coordLoop = function(stepCall){
             for (let z = 0; z < subFactor; z++) {
                 for (let y = 0; y < subFactor; y++) {
                     for (let x = 0; x < subFactor; x++) {
-                        stepCall();
+                        stepCall(x,y,z, subLength);
                     }
                 }
             }
         }
         
-        coordLoop(()=>{
-            let point = new Point(x*subLength,y*subLength,z*subLength);
-            let qube  = new Qube(point, subLength);
+        coordLoop((x,y,z, len)=>{
+            let point = new Point(x*len,y*len,z*len);
+            let qube  = new Qube(point, len);
             this.doQubeStepFor(qube);
         });
-        coordLoop(()=>{
-
+        coordLoop((x,y,z, len)=>{
+            let point = new Point(x*len,y*len,z*len);
+            let square = new Square(point, len)
+            this.doSquareStepFor(square);
         });
-        coordLoop(()=>{
-
+        coordLoop((x,y,z, len)=>{
+            let point = new Point(x*len,y*len,z*len);
+            let diamond = new Diamond(point, len);
+            this.doDiamondStepFor(diamond);
         });
+    }
+
+    iterator(){
+        for(let i=0; i<this.stage.n; i++){
+			this.iterate(i);
+			this.stage.deviation = this.stage.deviation/1.5;
+		}
     }
 }
