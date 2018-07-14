@@ -34,6 +34,14 @@ class Point{
         this.y = y;
         this.z = z;
     }
+    isInCube(max){
+        if ((this.x>0 && this.x<max) && 
+            (this.y>0 && this.y<max) &&
+            (this.z>0 && this.z<max)) {
+           return true;
+        }
+        return false;
+    }
 }
 class Shape{
     constructor(p000, size){
@@ -54,7 +62,10 @@ class Qube extends Shape{
     constructor(p000, size){
         super(p000, size);
     }
-    get Points(){return [
+    get CenterPoint(){
+        return this.center;
+    }
+    get qubePoints(){return [
         this._p(-1,-1,-1),
         this._p( 1,-1,-1),
         this._p(-1,-1, 1),
@@ -162,23 +173,22 @@ class QubeStage{
 
         this.arr = Tools.MultiArr(0, this.size, this.size, this.size);
     }
-    /* valVal(val){
-        if(!isNaN(val)){
-            
-        }
-    } */
-    setP(x, y, z, val){
-        this.arr[x][y][z] = Math.floor(val);
+    setP(pt, val){
+        this.arr[pt.x][pt.y][pt.z] = Math.floor(val);
     }
-    getP(x, y, z){
-        return this.arr[x][y][z];
+    getP(pt){
+        return this.arr[pt.x][pt.y][pt.z];
     }
 
     set corners(_val){
-        setP(0,         0,          0,          _val[0][0][0]) ;setP(0,         this.max,   0,          _val[0][1][0]);
-        setP(this.max,  0,          0,          _val[1][0][0]) ;setP(this.max,  this.max,   0,          _val[1][1][0]);
-        setP(0,         0,          this.max,   _val[0][0][1]) ;setP(0,         this.max,   this.max,   _val[0][1][1]);
-        setP(this.max,  0,          this.max,   _val[1][0][1]) ;setP(this.max,  this.max,   this.max,   _val[1][1][1]);
+        this.setP(new Point(0       ,  0,           0       ),   _val[0][0][0]);
+        this.setP(new Point(0       ,  this.max,    0       ),   _val[0][1][0]);
+        this.setP(new Point(this.max,  0,           0       ),   _val[1][0][0]);
+        this.setP(new Point(this.max,  this.max,    0       ),   _val[1][1][0]);
+        this.setP(new Point(0       ,  0,           this.max),   _val[0][0][1]);
+        this.setP(new Point(0       ,  this.max,    this.max),   _val[0][1][1]);
+        this.setP(new Point(this.max,  0,           this.max),   _val[1][0][1]);
+        this.setP(new Point(this.max,  this.max,    this.max),   _val[1][1][1]);
     }
 }
 
@@ -190,5 +200,58 @@ class StageBuilder{
     setRandomCorners(){
         let cornGrid = Tools.MultiArr(Tools.Rnd, 2,2,2);
         this.stage.corners = cornGrid;
+    }
+
+    doQubeStepFor(qube){
+        let c       = qube.center;
+        let sum     = 0;
+        let divisor = 0;
+
+        for (let i = 0; i < qube.qubePoints.length; i++) {
+            let pt = qube.qubePoints[i];
+            
+            if (pt.isInCube(this.stage.size)) {
+                let val = this.stage.getP(pt);
+                sum+=val;
+                divisor++;
+            }
+        }
+
+        return this.stage.setP(c, sum/divisor);
+    }
+    doSquareStepFor(square){
+
+    }
+    doDiamondStepFor(diamond){
+
+    }
+
+
+
+    iterate(iteration){
+        let subFactor = Math.pow(2,iteration);
+        let subLength = this.stage.max/subFactor;
+        
+        let coordLoop = function(stepCall){
+            for (let z = 0; z < subFactor; z++) {
+                for (let y = 0; y < subFactor; y++) {
+                    for (let x = 0; x < subFactor; x++) {
+                        stepCall();
+                    }
+                }
+            }
+        }
+        
+        coordLoop(()=>{
+            let point = new Point(x*subLength,y*subLength,z*subLength);
+            let qube  = new Qube(point, subLength);
+            this.doQubeStepFor(qube);
+        });
+        coordLoop(()=>{
+
+        });
+        coordLoop(()=>{
+
+        });
     }
 }
