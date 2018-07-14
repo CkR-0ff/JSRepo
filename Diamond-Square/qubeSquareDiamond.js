@@ -35,18 +35,24 @@ class Point{
         this.z = z;
     }
 }
-class Qube{
+class Shape{
     constructor(p000, size){
         this.size   = size;
         this.mid    = size/2;
         this.center = new Point(p000.x+this.mid,p000.y+this.mid,p000.z+this.mid);
     }
+    //calculating centre points of the sides from matrix
     _p(xS, yS, zS){
         return new Point(
             this.center.x+xS*this.mid,//x
             this.center.y+yS*this.mid,//y
             this.center.z+zS*this.mid //z
         );
+    }
+}
+class Qube extends Shape{
+    constructor(p000, size){
+        super(p000, size);
     }
     get Points(){return [
         this._p(-1,-1,-1),
@@ -59,58 +65,92 @@ class Qube{
         this._p( 1, 1, 1)
     ]}
 }
-class Square{
+class Square extends Shape{
     constructor(p000, size){
-        this.size   = size;
-        this.mid    = size/2;
-        this.center = new Point(p000.x+this.mid,p000.y+this.mid,p000.z+this.mid);
+        super(p000, size);
     }
-    //calculating centre points of the sides from matrix
-    _pS(xS, yS, zS){
-        return new Point(
-            this.center.x + xS*this.mid,//x
-            this.center.y + yS*this.mid,//y
-            this.center.z + zS*this.mid //z
-        );
-    }
-    //calculating surroundin poins for a centre point of a side
-    _pE(pS, aS, bS, ext){
+    get SidePoints(){return [
+        this._p( 0,-1, 0),
+        this._p( 0, 1, 0),
+        this._p(-1, 0, 0),
+        this._p( 1, 0, 0),
+        this._p( 0, 0,-1),
+        this._p( 0, 0, 1)
+    ]}
+    //calculating square's surroundin poins for a centre point of a side by matrix
+    _pS(pS, aS, bS, cS){
         let retPoint = new Point();
         if (pS.x !== this.center.x){
-            retPoint.x = pS.x;
+            retPoint.x = pS.x+cS*this.mid;
             retPoint.y = pS.y+aS*this.mid;
             retPoint.z = pS.z+bS*this.mid;
         }
         if (pS.y !== this.center.y){
             retPoint.x = pS.x+aS*this.mid;
-            retPoint.y = pS.y;
+            retPoint.y = pS.y+cS*this.mid;
             retPoint.z = pS.z+bS*this.mid;
         }
         if (pS.z !== this.center.z){
             retPoint.x = pS.x+aS*this.mid;
             retPoint.y = pS.y+bS*this.mid;
-            retPoint.z = pS.z;
+            retPoint.z = pS.z+cS*this.mid;
         }
         
         return retPoint;
     }
-    get SidePoints(){return [
-        this._pS( 0,-1, 0),
-        this._pS( 0, 1, 0),
-        this._pS(-1, 0, 0),
-        this._pS( 1, 0, 0),
-        this._pS( 0, 0,-1),
-        this._pS( 0, 0, 1)
-    ]}
+
     squarePointsFor(pS){
         return [
-            this._pE(pS, -1, -1),
-            this._pE(pS, -1,  1),
-            this._pE(pS,  1, -1),
-            this._pE(pS,  1,  1),
+            this._pS(pS, -1, -1,  0),
+            this._pS(pS, -1,  1,  0),
+            this._pS(pS,  1, -1,  0),
+            this._pS(pS,  1,  1,  0),
+            this._pS(pS,  0,  0, -1),
+            this._pS(pS,  0,  0,  1)
         ];
     }
     
+}
+class Diamond extends Shape{
+    constructor(p000, size){
+        super(p000, size);
+    }
+    get EdgePoints(){return [
+        this._p(-1, 0,-1),this._p( 1, 0,-1),
+        this._p( 1, 0, 1),this._p(-1, 0, 1),
+        this._p( 0,-1,-1),this._p( 1,-1, 0),
+        this._p( 0,-1, 1),this._p(-1,-1, 0),
+        this._p( 0, 1,-1),this._p( 1, 1, 0),
+        this._p( 0, 1, 1),this._p(-1, 1, 0)
+    ]}
+    _pD(pD, aD, bD, cD){
+        let retPoint = netPoint();
+        if(pD.x === this.center.x){
+            retPoint.x = pD.x+cD*this.mid;
+            retPoint.y = pD.y+bD*this.mid;
+            retPoint.z = pD.z+aD*this.mid;
+        }
+        if(pD.y === this.center.y){
+            retPoint.x = pD.x+aD*this.mid;
+            retPoint.y = pD.y+cD*this.mid;
+            retPoint.z = pD.z+bD*this.mid;
+        }
+        if(pD.z === this.center.z){
+            retPoint.x = pD.x+aD*this.mid;
+            retPoint.y = pD.y+bD*this.mid;
+            retPoint.z = pD.z+cD*this.mid;
+        }
+        return retPoint;
+    }
+    diamondPointFor(pD){
+        return [
+            this._pD(pD,-1, 0, 0),this._pD(pD, 0, 0,-1),
+            this._pD(pD, 1, 0, 0),this._pD(pD, 0, 0, 1),
+            this._pD(pD, 0,-1, 0),this._pD(pD, 0, 1, 0),
+            this._pD(pD,-1,-1, 0),this._pD(pD, 1,-1, 0),
+            this._pD(pD, 1, 1, 0),this._pD(pD,-1, 1, 0),
+        ]
+    }
 }
 
 class QubeStage{
