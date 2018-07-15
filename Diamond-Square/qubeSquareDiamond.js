@@ -35,9 +35,9 @@ class Point{
         this.z = z;
     }
     isInCube(max){
-        if ((this.x>0 && this.x<max) && 
-            (this.y>0 && this.y<max) &&
-            (this.z>0 && this.z<max)) {
+        if ((this.x>=0 && this.x<max) && 
+            (this.y>=0 && this.y<max) &&
+            (this.z>=0 && this.z<max)) {
            return true;
         }
         return false;
@@ -203,9 +203,9 @@ class StageBuilder{
     }
 
     doQubeStepFor(qube){
-        let c       = qube.center;
-        let sum     = 0;
-        let divisor = 0;
+        let centPoint = qube.center;
+        let sum       = 0;
+        let divisor   = 0;
 
         for (let i = 0; i < qube.qubePoints.length; i++) {
             let pt = qube.qubePoints[i];
@@ -217,7 +217,8 @@ class StageBuilder{
             }
         }
 
-        this.stage.setP(c, sum/divisor);
+        centVal = (sum/divisor)+this.stage.deviation;
+        this.stage.setP(centPoint, centVal);
     }
     doSquareStepFor(square){
         for (let i = 0; i < square.SidePoints.length; i++) {
@@ -235,7 +236,8 @@ class StageBuilder{
                 }
             }
 
-            this.stage.setP(sidePoint, sum/divisor);
+            sideVal = (sum/divisor)+this.stage.deviation;
+            this.stage.setP(sidePoint, sideVal);
         }
     }
     doDiamondStepFor(diamond){
@@ -254,11 +256,10 @@ class StageBuilder{
                 }
             }
 
-            this.stage.setP(edgePoint, sum/divisor);
+            edgeVal = (sum/divisor)+this.stage.deviation;
+            this.stage.setP(edgePoint, edgeVal);
         }
     }
-
-
 
     iterate(iteration){
         let subFactor = Math.pow(2,iteration);
