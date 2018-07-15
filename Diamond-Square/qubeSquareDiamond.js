@@ -390,10 +390,10 @@ class StageDisplay{
     }    
 }
 
-let stage = new QubeStage(8, 75);
+let stage = new QubeStage(8, 75);//when n is 8 takes 40 seconds for iterator to complete
 let builder = new StageBuilder(stage);
 builder.setRandomCorners();
-builder.iterator();
+builder.iterator();// for high n values causes overflow
 
 let display = new StageDisplay(stage);
 display.showDisplay();
