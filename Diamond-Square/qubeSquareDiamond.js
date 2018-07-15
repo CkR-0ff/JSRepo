@@ -26,6 +26,9 @@ class Tools{
     static get rnd(){
         return Math.floor(Math.random()*256);
     }
+    static rndSign(){
+        return Math.round(Math.random()) * 2 - 1;
+    }
 }
 
 class Point{
@@ -135,7 +138,7 @@ class Diamond extends Shape{
         this._p( 0, 1, 1),this._p(-1, 1, 0)
     ]}
     _pD(pD, aD, bD, cD){
-        let retPoint = netPoint();
+        let retPoint = new Point();
         if(pD.x === this.center.x){
             retPoint.x = pD.x+cD*this.mid;
             retPoint.y = pD.y+bD*this.mid;
@@ -197,6 +200,13 @@ class StageBuilder{
         this.stage = stage;
     }
 
+    rndSignDeviation(sum, divisor){
+        let rndSign = Tools.rndSign();
+        let dev = (sum/divisor)+rndSign*this.stage.deviation;
+
+        return dev;
+    }
+
     setRandomCorners(){
         let cornGrid = Tools.MultiArr(Tools.Rnd, 2,2,2);
         this.stage.corners = cornGrid;
@@ -217,7 +227,7 @@ class StageBuilder{
             }
         }
 
-        centVal = (sum/divisor)+this.stage.deviation;
+        let centVal = this.rndSignDeviation(sum, divisor);
         this.stage.setP(centPoint, centVal);
     }
     doSquareStepFor(square){
@@ -236,7 +246,7 @@ class StageBuilder{
                 }
             }
 
-            sideVal = (sum/divisor)+this.stage.deviation;
+            let sideVal = this.rndSignDeviation(sum, divisor);
             this.stage.setP(sidePoint, sideVal);
         }
     }
@@ -256,7 +266,7 @@ class StageBuilder{
                 }
             }
 
-            edgeVal = (sum/divisor)+this.stage.deviation;
+            let edgeVal = this.rndSignDeviation(sum, divisor);
             this.stage.setP(edgePoint, edgeVal);
         }
     }
