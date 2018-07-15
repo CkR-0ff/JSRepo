@@ -309,3 +309,92 @@ class StageBuilder{
 		}
     }
 }
+
+class StageDisplay{
+    constructor(stage){
+        this.stage = stage;
+        this.screenDiv;
+        this.animationId=0;
+    }
+
+    get screen(){
+        if(this.screenDiv)
+            return this.screenDiv;
+        
+        this.screenDiv = document.getElementById('screen');
+        if (!this.screenDiv) {
+            this.screenDiv = document.createElement('div');
+            this.screenDiv.id = "screen";
+        }
+        return this.screenDiv;
+    }
+    get frames(){
+        return this.screen.children;
+    }
+    get frameCount(){
+        return this.screen.children.length;
+    }
+
+    getCanvasForFrame(x){
+        let canv = document.getElementById("heatmap"+x);
+        if (!canv) {
+            canv = document.createElement('canvas');
+            canv.id="heatmap"+x;
+            canv.width = this.stage.size;
+            canv.height = this.stage.size;
+            canv.style.display = "none";
+        }
+        return canv;
+    }
+    
+    createFrame(x){
+        let canvas = this.getCanvasForFrame(x);
+
+        let ctx = canvas.getContext("2d");
+	    let imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+        let data = imgData.data;
+
+        for (let y = 0; y < this.stage.size; y++) {
+            for (let z = 0; z < this.stage.size*4; z+=4) {
+                let pixPos = y*stage.size*4+z;
+                data[pixPos  ] = 2;
+                data[pixPos+1] = 255;
+                data[pixPos+2] = 2;
+                data[pixPos+3] = this.stage.getP(new Point(x,y,z/4));
+            }
+        }
+        ctx.putImageData(imgData, 0, 0);
+        return canvas;
+    }
+    addFrames(){
+        for (let x = 0; x < this.stage.size; x++) {
+            let frame = this.createFrame(x);
+            this.screen.appendChild(frame);
+        }
+    }
+    showDisplay(){
+        document.body.appendChild(this.screen);
+        this.addFrames();
+    }
+
+    startAnimation(fps){
+        let i=0;
+        this.animationId = setInterval(()=>{
+            this.frames[  i % this.frameCount].style.display = "none";
+            this.frames[++i % this.frameCount].style.display = "block";
+        }, 1000/fps);
+    }
+    stopAnimation(){
+        clearInterval(this.animationId);
+		this.animationId = 0;
+    }    
+}
+
+let stage = new QubeStage(8, 75);
+let builder = new StageBuilder(stage);
+builder.setRandomCorners();
+builder.iterator();
+
+let display = new StageDisplay(stage);
+display.showDisplay();
+display.startAnimation(30);
