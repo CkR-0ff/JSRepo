@@ -375,7 +375,7 @@ class CanvasDrawer{
         let canv = this.getCanvas();
         let ctx = canv.getContext('2d');
         ctx.strokeStyle = 'rgba(50,255,50,255)';
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 10;
         ctx.beginPath();
         for (let i = 0; i < this.drawer.mountsArray.length; i++) {
             const cur = this.drawer.mountsArray[i];
@@ -417,7 +417,6 @@ class CanvasDrawer{
                 if(data[pixPos  ] === 0 && data[pixPos+1] === 0 && data[pixPos+2] === 0){
                     data[pixPos+3] = 0;
                 }
-                
             }
         }
         ctx.putImageData(imgData, 0, 0);
