@@ -255,7 +255,8 @@ class Tools{
     }
     static pointOnEllips(angle, a, b){
         let radius = a*b/Math.sqrt(Math.pow(b*Math.cos(angle),2)+Math.pow(a*Math.sin(angle),2));
-        return new Position(radius*Math.cos(angle), radius*Math.sin(angle));
+        let pos = new Position(radius*Math.cos(angle), radius*Math.sin(angle));
+        return pos;
     }
 
 
@@ -340,7 +341,7 @@ class WebDrawer{
         this.imgArray = imgArray;
         this.mountsArray = new Array(imgArray.length);
         this.width = 3400;
-        this.height = 4200
+        this.height = 5200
     }
     hitsArray(mount){
         let ret = false;
@@ -362,21 +363,41 @@ class WebDrawer{
         let angBl = Tools.pointAngle(mount.bl, origin);
         let angBr = Tools.pointAngle(mount.br, origin);
 
-        if (mount.tl.x<Tools.pointOnEllips(angTl,a,b).x &&
-            mount.tl.y<Tools.pointOnEllips(angTl,a,b).y) {
-            return true;
+        
+        if (mount.tl.x<origin.x &&
+            mount.tl.y<origin.y) {
+                let pTl = Tools.pointOnEllips(angTl,a,b);
+                if (mount.tl.x<pTl.x+origin.x &&
+                    mount.tl.y<pTl.y+origin.y) {
+                    return true;
+                }
         }
-        if (mount.tr.x>Tools.pointOnEllips(angTr,a,b).x &&
-            mount.tr.y<Tools.pointOnEllips(angTr,a,b).y) {
-            return true;
+        
+        if (mount.tr.x>origin.x &&
+            mount.tr.y<origin.y) {
+                let pTr = Tools.pointOnEllips(angTr,a,b);
+                if (mount.tr.x>pTr.x+origin.x &&
+                    mount.tr.y<pTr.y+origin.y) {
+                    return true;
+                }
         }
-        if (mount.bl.x<Tools.pointOnEllips(angBl,a,b).x &&
-            mount.bl.y>Tools.pointOnEllips(angBl,a,b).y) {
-            return true;
+        
+        if (mount.bl.x<origin.x &&
+            mount.bl.y>origin.y) {
+                let pBl = Tools.pointOnEllips(angBl,a,b);
+                if (mount.bl.x<pBl.x+origin.x &&
+                    mount.bl.y>pBl.y+origin.y) {
+                    return true;
+                }
         }
-        if (mount.br.x>Tools.pointOnEllips(angBr,a,b).x &&
-            mount.br.y>Tools.pointOnEllips(angBr,a,b).y) {
-            return true;
+        
+        if (mount.br.x>origin.x &&
+            mount.br.y>origin.y) {
+                let pBr = Tools.pointOnEllips(angBr,a,b);
+                if (mount.br.x>pBr.x+origin.x &&
+                    mount.br.y>pBr.y+origin.y) {
+                    return true;
+                }
         }
         return false;
     }
@@ -399,7 +420,7 @@ class WebDrawer{
         //debugger;
         for(let i = 0; i < this.imgArray.length; i++) {
             let mount = this.getRandomMount();
-            while (this.hitsArray(mount)) {
+            while (this.hitsArray(mount) || this.isOutOfEllips(mount)) {
                 mount = this.getRandomMount();
             }
             this.mountsArray[i] = mount;
@@ -416,8 +437,8 @@ class CanvasDrawer{
         if (!canv) {
             canv = document.createElement('canvas');
             canv.id="faceCanvas";
-            canv.width = this.width;
-            canv.height = this.height;
+            canv.width = this.drawer.width;
+            canv.height = this.drawer.height;
             canv.style.display = "block";
             document.body.appendChild(canv);
         }
@@ -501,22 +522,18 @@ class CanvasDrawer{
             ctx.restore();
         });
     }
-    downloadPairs(count){//not working
+    downloadMulti(count){//why is this not working... needs to reload Mounts
         //debugger;
         let canv = this.getCanvas();
         let ctx = canv.getContext('2d');
         
         for (let z = 0; z < count; z++) {
             ctx.clearRect(0,0,canv.width, canv.height);
-            this.drawFaces();
-            
-            Tools.downloadCanvas(canv, "Morty" + z + "a.png");
-
-            ctx.clearRect(0,0,canv.width, canv.height);
-            this.drawLinks(275);
+            this.drawLinks(250);
             this.drawWeb();
-
-            Tools.downloadCanvas(canv, "Morty" + z + "b.png");
+            this.removeBlacks(ctx);
+            this.drawFaces();
+            Tools.downloadCanvas(canv, "MortysC_" + z + ".png");
         }
     }
     downloadImg(){
@@ -524,7 +541,7 @@ class CanvasDrawer{
         let ctx = canv.getContext('2d');
 
         ctx.clearRect(0,0,canv.width, canv.height);
-        this.drawLinks(275);
+        this.drawLinks(250);
         this.drawWeb();
         this.removeBlacks(ctx);
         this.drawFaces();
