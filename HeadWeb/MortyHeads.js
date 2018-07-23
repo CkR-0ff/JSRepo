@@ -398,7 +398,7 @@ class CanvasDrawer{
         this.drawer.mountsArray.forEach(elem=>{
             
             ctx.strokeStyle = 'rgba(50,255,50,255)';
-            ctx.lineWidth = 5;
+            ctx.lineWidth = 15;
             ctx.fillStyle = 'rgba(0,0,0,255)';
             ctx.beginPath();
             ctx.arc(elem.pos.x+elem.size.w/2,elem.pos.y+elem.size.h/2,elem.size.h/2,0,2*Math.PI);
@@ -406,6 +406,21 @@ class CanvasDrawer{
             ctx.stroke();  
             
         });
+    }
+    removeBlacks(ctx){
+        let imgData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
+        let data = imgData.data;
+
+        for (let y = 0; y < ctx.canvas.height; y++) {
+            for (let x = 0; x < ctx.canvas.width*4; x+=4) {
+                let pixPos = y*ctx.canvas.width*4+x;
+                if(data[pixPos  ] === 0 && data[pixPos+1] === 0 && data[pixPos+2] === 0){
+                    data[pixPos+3] = 0;
+                }
+                
+            }
+        }
+        ctx.putImageData(imgData, 0, 0);
     }
     drawFaces(){
         let canv = this.getCanvas();
@@ -451,6 +466,7 @@ class CanvasDrawer{
         ctx.clearRect(0,0,canv.width, canv.height);
         this.drawLinks(275);
         this.drawWeb();
+        this.removeBlacks(ctx);
         this.drawFaces();
         Tools.downloadCanvas(canv, "Mortys.png");
     }
