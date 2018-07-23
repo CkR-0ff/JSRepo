@@ -239,6 +239,26 @@ class Tools{
     static isInRange(val, min, max){
         return (val<max && val>min)
     }
+
+    static pointAngle(point, origin){
+        let yO = origin.y-point.y;
+        let xO = origin.x-point.x;
+        if(yO<0){
+            return Math.atan2(Math.abs(yO), xO);
+        }else{
+            return Math.PI*2 - Math.atan2(Math.abs(yO), xO);
+        }
+    }
+    static ellipsRadius(angle, a, b){
+        let r = a*b/Math.sqrt(Math.pow(b*Math.cos(angle),2)+Math.pow(a*Math.sin(angle),2));
+        return r;
+    }
+    static pointOnEllips(angle, a, b){
+        let radius = a*b/Math.sqrt(Math.pow(b*Math.cos(angle),2)+Math.pow(a*Math.sin(angle),2));
+        return new Position(radius*Math.cos(angle), radius*Math.sin(angle));
+    }
+
+
     static dataURLtoBlob (dataurl) {
         var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
             bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
@@ -247,7 +267,6 @@ class Tools{
         }
         return new Blob([u8arr], {type:mime});
     }
-
     static downloadCanvas (canvas, name){
         var link = document.createElement("a");
           var imgData = canvas.toDataURL({    format: 'png',
@@ -294,6 +313,18 @@ class Mount{
         this.size = size;
         this.rot = rotation;
     }
+    get tl(){
+        return new Position(this.pos.x, this.pos.y);
+    }
+    get tr(){
+        return new Position(this.pos.x+this.size.w, this.pos.y);
+    }
+    get bl(){
+        return new Position(this.pos.x, this.pos.y+this.size.h);
+    }
+    get br(){
+        return new Position(this.pos.x+this.size.w, this.pos.y+this.size.h);
+    }
     intersects(mount){
         //debugger;
         if (((mount.pos.x > this.pos.x+this.size.w) || (mount.pos.y > this.pos.y+this.size.h)) || 
@@ -308,6 +339,8 @@ class WebDrawer{
     constructor(imgArray){
         this.imgArray = imgArray;
         this.mountsArray = new Array(imgArray.length);
+        this.width = 3400;
+        this.height = 4200
     }
     hitsArray(mount){
         let ret = false;
@@ -319,11 +352,39 @@ class WebDrawer{
         //debugger;
         return ret;
     }
+    isOutOfEllips(mount){
+        let a = this.width/2;
+        let b = this.height/2;
+        let origin = new Position(a,b);
+
+        let angTl = Tools.pointAngle(mount.tl, origin);
+        let angTr = Tools.pointAngle(mount.tr, origin);
+        let angBl = Tools.pointAngle(mount.bl, origin);
+        let angBr = Tools.pointAngle(mount.br, origin);
+
+        if (mount.tl.x<Tools.pointOnEllips(angTl,a,b).x &&
+            mount.tl.y<Tools.pointOnEllips(angTl,a,b).y) {
+            return true;
+        }
+        if (mount.tr.x>Tools.pointOnEllips(angTr,a,b).x &&
+            mount.tr.y<Tools.pointOnEllips(angTr,a,b).y) {
+            return true;
+        }
+        if (mount.bl.x<Tools.pointOnEllips(angBl,a,b).x &&
+            mount.bl.y>Tools.pointOnEllips(angBl,a,b).y) {
+            return true;
+        }
+        if (mount.br.x>Tools.pointOnEllips(angBr,a,b).x &&
+            mount.br.y>Tools.pointOnEllips(angBr,a,b).y) {
+            return true;
+        }
+        return false;
+    }
     getRandomMount(){
         return new Mount(
             new Position(
-                Tools.RandomRange(0, 3000), 
-                Tools.RandomRange(0, 3800)
+                Tools.RandomRange(0, this.width-400), 
+                Tools.RandomRange(0, this.height-400)
             ),
             new Size(
                 Tools.RandomRange(100,400)
@@ -355,8 +416,8 @@ class CanvasDrawer{
         if (!canv) {
             canv = document.createElement('canvas');
             canv.id="faceCanvas";
-            canv.width = 3400;
-            canv.height = 4200;
+            canv.width = this.width;
+            canv.height = this.height;
             canv.style.display = "block";
             document.body.appendChild(canv);
         }
