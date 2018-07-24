@@ -364,38 +364,30 @@ class WebDrawer{
         let angBr = Tools.pointAngle(mount.br, origin);
 
         
-        if (mount.tl.x<origin.x &&
-            mount.tl.y<origin.y) {
+        if (mount.tl.x<origin.x && mount.tl.y<origin.y) {
                 let pTl = Tools.pointOnEllips(angTl,a,b);
-                if (mount.tl.x<pTl.x+origin.x &&
-                    mount.tl.y<pTl.y+origin.y) {
+                if (mount.tl.x<pTl.x+origin.x && mount.tl.y<pTl.y+origin.y) {
                     return true;
                 }
         }
         
-        if (mount.tr.x>origin.x &&
-            mount.tr.y<origin.y) {
+        if (mount.tr.x>origin.x && mount.tr.y<origin.y) {
                 let pTr = Tools.pointOnEllips(angTr,a,b);
-                if (mount.tr.x>pTr.x+origin.x &&
-                    mount.tr.y<pTr.y+origin.y) {
+                if (mount.tr.x>pTr.x+origin.x && mount.tr.y<pTr.y+origin.y) {
                     return true;
                 }
         }
         
-        if (mount.bl.x<origin.x &&
-            mount.bl.y>origin.y) {
+        if (mount.bl.x<origin.x && mount.bl.y>origin.y) {
                 let pBl = Tools.pointOnEllips(angBl,a,b);
-                if (mount.bl.x<pBl.x+origin.x &&
-                    mount.bl.y>pBl.y+origin.y) {
+                if (mount.bl.x<pBl.x+origin.x && mount.bl.y>pBl.y+origin.y) {
                     return true;
                 }
         }
         
-        if (mount.br.x>origin.x &&
-            mount.br.y>origin.y) {
+        if (mount.br.x>origin.x && mount.br.y>origin.y) {
                 let pBr = Tools.pointOnEllips(angBr,a,b);
-                if (mount.br.x>pBr.x+origin.x &&
-                    mount.br.y>pBr.y+origin.y) {
+                if (mount.br.x>pBr.x+origin.x && mount.br.y>pBr.y+origin.y) {
                     return true;
                 }
         }
@@ -417,7 +409,7 @@ class WebDrawer{
     }
 
     createMounts(){
-        //debugger;
+        this.mountsArray = new Array(this.imgArray.length);
         for(let i = 0; i < this.imgArray.length; i++) {
             let mount = this.getRandomMount();
             while (this.hitsArray(mount) || this.isOutOfEllips(mount)) {
@@ -513,8 +505,7 @@ class CanvasDrawer{
             ctx.save(); 
             
             ctx.translate(elem.pos.x+elem.size.w/2, elem.pos.y+elem.size.h/2);
-            //debugger;
-            ctx.rotate(elem.rot.angRad); // rotate
+            ctx.rotate(elem.rot.angRad);
             ctx.translate(-(elem.pos.x+elem.size.w/2), -(elem.pos.y+elem.size.h/2)); // translate back
             
             ctx.drawImage(imgs[idx], elem.pos.x, elem.pos.y, elem.size.w, elem.size.h);
@@ -522,21 +513,7 @@ class CanvasDrawer{
             ctx.restore();
         });
     }
-    downloadMulti(count){//why is this not working... needs to reload Mounts
-        //debugger;
-        let canv = this.getCanvas();
-        let ctx = canv.getContext('2d');
-        
-        for (let z = 0; z < count; z++) {
-            ctx.clearRect(0,0,canv.width, canv.height);
-            this.drawLinks(250);
-            this.drawWeb();
-            this.removeBlacks(ctx);
-            this.drawFaces();
-            Tools.downloadCanvas(canv, "MortysC_" + z + ".png");
-        }
-    }
-    downloadImg(){
+    downloadImg(x = 137){
         let canv = this.getCanvas();
         let ctx = canv.getContext('2d');
 
@@ -545,16 +522,23 @@ class CanvasDrawer{
         this.drawWeb();
         this.removeBlacks(ctx);
         this.drawFaces();
-        Tools.downloadCanvas(canv, "Mortys.png");
+        Tools.downloadCanvas(canv, "Mortys C-" + x + ".png");
+    }
+    downloadMulti(count){
+        for (let z = 1; z <= count; z++) {
+            this.drawer.createMounts();
+            this.downloadImg(z);
+        }
     }
 }
 
 let drawer = new WebDrawer(mortyArray);
-drawer.createMounts();
 let canvDraw = new CanvasDrawer(drawer);
-
+canvDraw.drawer.createMounts();
 canvDraw.loadImages();
+
 //canvDraw.drawLinks(275);
 //canvDraw.drawWeb();
 //canvDraw.drawFaces();
 //canvDraw.downloadImg();
+//canvDraw.downloadMulti();
