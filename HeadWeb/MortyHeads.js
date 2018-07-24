@@ -270,17 +270,18 @@ class Tools{
     }
     static downloadCanvas (canvas, name){
         var link = document.createElement("a");
-          var imgData = canvas.toDataURL({    format: 'png',
+        var imgData = canvas.toDataURL({
+            format: 'png',
             multiplier: 4});
-          var strDataURI = imgData.substr(22, imgData.length);
-          var blob = this.dataURLtoBlob(imgData);
-          var objurl = URL.createObjectURL(blob);
+        var strDataURI = imgData.substr(22, imgData.length);
+        var blob = this.dataURLtoBlob(imgData);
+        var objurl = URL.createObjectURL(blob);
+
+        link.download = name;
+
+        link.href = objurl;
     
-          link.download = name;
-    
-          link.href = objurl;
-    
-         link.click();
+        link.click();
     } 
 }
 
