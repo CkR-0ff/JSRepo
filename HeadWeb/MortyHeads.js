@@ -1,10 +1,23 @@
 let mortyArray = [
+    "https://pocketmortys.net/images/assets/MortyEvilRabbitIcon.png",
+    "https://pocketmortys.net/images/assets/MortySpookyIcon.png",
+    "https://pocketmortys.net/images/assets/MortyColossalHeadIcon.png",
+    "https://pocketmortys.net/images/assets/MortyPsychokineticIcon.png",
+    "https://pocketmortys.net/images/assets/MortyGaseousIcon.png",
+    "https://pocketmortys.net/images/assets/MortyEggIcon.png",
+    "https://pocketmortys.net/images/assets/MortyTripleSnoozleIcon.png",
+    "https://pocketmortys.net/images/assets/MortyAnimatronicIcon.png",
+    "https://pocketmortys.net/images/assets/MortyCarcinogenicIcon.png",
+    "https://pocketmortys.net/images/assets/MortyPickledIcon.png",
+    "https://pocketmortys.net/images/assets/MortyPossessedIcon.png",
+    "https://pocketmortys.net/images/assets/MortyTrunkIcon.png",
+    "https://pocketmortys.net/images/assets/MortyPurgeSuitIcon.png",
+    "https://pocketmortys.net/images/assets/MortyAntsInMyEyesIcon.png",
     "https://pocketmortys.net/images/assets/MortyHoboIcon.png",
     "https://pocketmortys.net/images/assets/MortyOldIcon.png",
     "https://pocketmortys.net/images/assets/MortyGeriatricIcon.png",
     "https://pocketmortys.net/images/assets/MortyAncientIcon.png",
     "https://pocketmortys.net/images/assets/MortyRabbitIcon.png",
-    "https://pocketmortys.net/images/assets/MortyEvilRabbitIcon.png",
     "https://pocketmortys.net/images/assets/MortyNoEyeIcon.png",
     "https://pocketmortys.net/images/assets/MortyOneEyeIcon.png",
     "https://pocketmortys.net/images/assets/MortyThreeEyeIcon.png",
@@ -27,8 +40,6 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortyPeaceIcon.png",
     "https://pocketmortys.net/images/assets/MortyHippieIcon.png",
     "https://pocketmortys.net/images/assets/MortyOffTheGridIcon.png",
-    "https://pocketmortys.net/images/assets/MortyColossalHeadIcon.png",
-    "https://pocketmortys.net/images/assets/MortySpookyIcon.png",
     "https://pocketmortys.net/images/assets/MortyGhostlyIcon.png",
     "https://pocketmortys.net/images/assets/MortyPhantomIcon.png",
     "https://pocketmortys.net/images/assets/MortyDoubleIcon.png",
@@ -45,10 +56,8 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortyWizardIcon.png",
     "https://pocketmortys.net/images/assets/MortyTelepathicIcon.png",
     "https://pocketmortys.net/images/assets/MortyTelekineticIcon.png",
-    "https://pocketmortys.net/images/assets/MortyPsychokineticIcon.png",
     "https://pocketmortys.net/images/assets/MortyReverseMermaidIcon.png",
     "https://pocketmortys.net/images/assets/MortyBusinessIcon.png",
-    "https://pocketmortys.net/images/assets/MortyGaseousIcon.png",
     "https://pocketmortys.net/images/assets/MortyShadowIcon.png",
     "https://pocketmortys.net/images/assets/MortyAquaIcon.png",
     "https://pocketmortys.net/images/assets/MortyCyclopsIcon.png",
@@ -57,7 +66,6 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortyHammerheadIcon.png",
     "https://pocketmortys.net/images/assets/MortyCronenbergIcon.png",
     "https://pocketmortys.net/images/assets/MortyMascotIcon.png",
-    "https://pocketmortys.net/images/assets/MortyEggIcon.png",
     "https://pocketmortys.net/images/assets/MortyTheOneTrueIcon.png",
     "https://pocketmortys.net/images/assets/MortyMulletIcon.png",
     "https://pocketmortys.net/images/assets/MortyChopsIcon.png",
@@ -83,7 +91,6 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortyMorticiaIcon.png",
     "https://pocketmortys.net/images/assets/MortySingleSnoozleIcon.png",
     "https://pocketmortys.net/images/assets/MortyDoubleSnoozleIcon.png",
-    "https://pocketmortys.net/images/assets/MortyTripleSnoozleIcon.png",
     "https://pocketmortys.net/images/assets/MortySuperMortyFanIcon.png",
     "https://pocketmortys.net/images/assets/MortySuperRickFanIcon.png",
     "https://pocketmortys.net/images/assets/MortyBlobIcon.png",
@@ -139,13 +146,11 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortySurvivalistIcon.png",
     "https://pocketmortys.net/images/assets/MortyWildManIcon.png",
     "https://pocketmortys.net/images/assets/MortyWildMascotIcon.png",
-    "https://pocketmortys.net/images/assets/MortyAnimatronicIcon.png",
     "https://pocketmortys.net/images/assets/MortyPlumbusSlaveIcon.png",
     "https://pocketmortys.net/images/assets/MortyPlumbusMasterIcon.png",
     "https://pocketmortys.net/images/assets/MortyPlumbusPrawnIcon.png",
     "https://pocketmortys.net/images/assets/MortyPlumboniaIcon.png",
     "https://pocketmortys.net/images/assets/MortyMutagenIcon.png",
-    "https://pocketmortys.net/images/assets/MortyCarcinogenicIcon.png",
     "https://pocketmortys.net/images/assets/MortyMegaIcon.png",
     "https://pocketmortys.net/images/assets/MortySplicedIcon.png",
     "https://pocketmortys.net/images/assets/MortyEnsignIcon.png",
@@ -155,7 +160,6 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortyWastelandIcon.png",
     "https://pocketmortys.net/images/assets/MortyCucumberIcon.png",
     "https://pocketmortys.net/images/assets/MortyPickleIcon.png",
-    "https://pocketmortys.net/images/assets/MortyPickledIcon.png",
     "https://pocketmortys.net/images/assets/MortyConcertoIcon.png",
     "https://pocketmortys.net/images/assets/MortySherlockIcon.png",
     "https://pocketmortys.net/images/assets/MortyPoorHouseIcon.png",
@@ -164,7 +168,6 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortySnotIcon.png",
     "https://pocketmortys.net/images/assets/MortyGunkIcon.png",
     "https://pocketmortys.net/images/assets/MortyMindbenderIcon.png",
-    "https://pocketmortys.net/images/assets/MortyPossessedIcon.png",
     "https://pocketmortys.net/images/assets/MortyIngestedIcon.png",
     "https://pocketmortys.net/images/assets/MortyVoltamatronIcon.png",
     "https://pocketmortys.net/images/assets/MortyMonsterIcon.png",
@@ -178,7 +181,6 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortySeason3Icon.png",
     "https://pocketmortys.net/images/assets/MortyStreetLocoIcon.png",
     "https://pocketmortys.net/images/assets/MortyEnforcerLocoIcon.png",
-    "https://pocketmortys.net/images/assets/MortyTrunkIcon.png",
     "https://pocketmortys.net/images/assets/MortyScalyIcon.png",
     "https://pocketmortys.net/images/assets/MortySquidFaceIcon.png",
     "https://pocketmortys.net/images/assets/MortyTentacleIcon.png",
@@ -213,9 +215,7 @@ let mortyArray = [
     "https://pocketmortys.net/images/assets/MortyWashingtonIcon.png",
     "https://pocketmortys.net/images/assets/MortyFroopyLandIcon.png",
     "https://pocketmortys.net/images/assets/MortyPurgeIcon.png",
-    "https://pocketmortys.net/images/assets/MortyPurgeSuitIcon.png",
     "https://pocketmortys.net/images/assets/MortyStPatrickIcon.png",
-    "https://pocketmortys.net/images/assets/MortyAntsInMyEyesIcon.png",
     "https://pocketmortys.net/images/assets/MortyEasterEggIcon.png",
     "https://pocketmortys.net/images/assets/MortyChickIcon.png",
     "https://pocketmortys.net/images/assets/MortyResurrectedIcon.png",
@@ -341,8 +341,8 @@ class WebDrawer{
     constructor(imgArray){
         this.imgArray = imgArray;
         this.mountsArray = new Array(imgArray.length);
-        this.width = 3400;
-        this.height = 5200
+        this.width = 4000;
+        this.height = 5600;
     }
     hitsArray(mount){
         let ret = false;
@@ -401,7 +401,7 @@ class WebDrawer{
                 Tools.RandomRange(0, this.height)
             ),
             new Size(
-                Tools.RandomRange(100,400)
+                Tools.RandomRange(125,400)
             ),
             new Rotation(
                 Tools.RandomRange(-120,120)
@@ -413,6 +413,10 @@ class WebDrawer{
         this.mountsArray = new Array(this.imgArray.length);
         for(let i = 0; i < this.imgArray.length; i++) {
             let mount = this.getRandomMount();
+            if(i>=0 && i<=14){
+                mount.size.w=500;
+                mount.size.h=500;
+            }
             while (this.hitsArray(mount) || this.isOutOfEllips(mount)) {
                 mount = this.getRandomMount();
             }
@@ -519,14 +523,14 @@ class CanvasDrawer{
         let ctx = canv.getContext('2d');
 
         ctx.clearRect(0,0,canv.width, canv.height);
-        this.drawLinks(250);
+        this.drawLinks(275);
         this.drawWeb();
         this.removeBlacks(ctx);
         this.drawFaces();
         Tools.downloadCanvas(canv, "Mortys C-" + x + ".png");
     }
-    downloadMulti(count){
-        for (let z = 1; z <= count; z++) {
+    downloadMulti(start, count){
+        for (let z = start; z <= start+count; z++) {
             this.drawer.createMounts();
             this.downloadImg(z);
         }
