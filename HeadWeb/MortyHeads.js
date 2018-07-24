@@ -396,8 +396,8 @@ class WebDrawer{
     getRandomMount(){
         return new Mount(
             new Position(
-                Tools.RandomRange(0, this.width-400), 
-                Tools.RandomRange(0, this.height-400)
+                Tools.RandomRange(0, this.width), 
+                Tools.RandomRange(0, this.height)
             ),
             new Size(
                 Tools.RandomRange(100,400)
@@ -503,7 +503,7 @@ class CanvasDrawer{
 
         this.drawer.mountsArray.forEach((elem,idx) => {
             ctx.save(); 
-            
+
             ctx.translate(elem.pos.x+elem.size.w/2, elem.pos.y+elem.size.h/2);
             ctx.rotate(elem.rot.angRad);
             ctx.translate(-(elem.pos.x+elem.size.w/2), -(elem.pos.y+elem.size.h/2)); // translate back
