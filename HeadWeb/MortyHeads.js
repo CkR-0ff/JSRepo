@@ -258,6 +258,13 @@ class Tools{
         let pos = new Position(radius*Math.cos(angle), radius*Math.sin(angle));
         return pos;
     }
+    static pointOnSuperEllipse(angle, a, b){
+        let x = Math.pow(Math.abs(Math.cos(angle)),2/2.5)*a*Math.sign(Math.cos(angle));
+        let y = Math.pow(Math.abs(Math.sin(angle)),2/2.5)*b*Math.sign(Math.sin(angle));
+        let pos = new Position(Math.floor(x), Math.floor(y));
+
+        return pos;
+    }
 
 
     static dataURLtoBlob (dataurl) {
@@ -341,8 +348,8 @@ class WebDrawer{
     constructor(imgArray){
         this.imgArray = imgArray;
         this.mountsArray = new Array(imgArray.length);
-        this.width = 4000;
-        this.height = 5600;
+        this.width = 5000;
+        this.height = 6600;
     }
     hitsArray(mount){
         let ret = false;
@@ -366,28 +373,28 @@ class WebDrawer{
 
         
         if (mount.tl.x<origin.x && mount.tl.y<origin.y) {
-                let pTl = Tools.pointOnEllips(angTl,a,b);
+                let pTl = Tools.pointOnSuperEllipse(angTl,a,b);
                 if (mount.tl.x<pTl.x+origin.x && mount.tl.y<pTl.y+origin.y) {
                     return true;
                 }
         }
         
         if (mount.tr.x>origin.x && mount.tr.y<origin.y) {
-                let pTr = Tools.pointOnEllips(angTr,a,b);
+                let pTr = Tools.pointOnSuperEllipse(angTr,a,b);
                 if (mount.tr.x>pTr.x+origin.x && mount.tr.y<pTr.y+origin.y) {
                     return true;
                 }
         }
         
         if (mount.bl.x<origin.x && mount.bl.y>origin.y) {
-                let pBl = Tools.pointOnEllips(angBl,a,b);
+                let pBl = Tools.pointOnSuperEllipse(angBl,a,b);
                 if (mount.bl.x<pBl.x+origin.x && mount.bl.y>pBl.y+origin.y) {
                     return true;
                 }
         }
         
         if (mount.br.x>origin.x && mount.br.y>origin.y) {
-                let pBr = Tools.pointOnEllips(angBr,a,b);
+                let pBr = Tools.pointOnSuperEllipse(angBr,a,b);
                 if (mount.br.x>pBr.x+origin.x && mount.br.y>pBr.y+origin.y) {
                     return true;
                 }
