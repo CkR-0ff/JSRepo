@@ -253,15 +253,9 @@ class Tools{
         let r = a*b/Math.sqrt(Math.pow(b*Math.cos(angle),2)+Math.pow(a*Math.sin(angle),2));
         return r;
     }
-    static pointOnEllips(angle, a, b){
-        let radius = a*b/Math.sqrt(Math.pow(b*Math.cos(angle),2)+Math.pow(a*Math.sin(angle),2));
+    static pointOnSuperEllipse2(angle, a, b, n){
+        let radius = a*b/Math.pow(Math.pow(Math.abs(b*Math.cos(angle)),n)+Math.pow(Math.abs(a*Math.sin(angle)),n),1/n);
         let pos = new Position(radius*Math.cos(angle), radius*Math.sin(angle));
-        return pos;
-    }
-    static pointOnSuperEllipse(angle, a, b){
-        let x = Math.pow(Math.abs(Math.cos(angle)),2/2.5)*a*Math.sign(Math.cos(angle));
-        let y = Math.pow(Math.abs(Math.sin(angle)),2/2.5)*b*Math.sign(Math.sin(angle));
-        let pos = new Position(Math.floor(x), Math.floor(y));
 
         return pos;
     }
@@ -348,8 +342,8 @@ class WebDrawer{
     constructor(imgArray){
         this.imgArray = imgArray;
         this.mountsArray = new Array(imgArray.length);
-        this.width = 5000;
-        this.height = 6600;
+        this.width = 6000;
+        this.height = 7500;
     }
     hitsArray(mount){
         let ret = false;
@@ -361,9 +355,10 @@ class WebDrawer{
         //debugger;
         return ret;
     }
-    isOutOfEllips(mount){
+    isOutOfEllips(mount, nL = 2){
         let a = this.width/2;
         let b = this.height/2;
+        let n = nL;
         let origin = new Position(a,b);
 
         let angTl = Tools.pointAngle(mount.tl, origin);
@@ -373,28 +368,28 @@ class WebDrawer{
 
         
         if (mount.tl.x<origin.x && mount.tl.y<origin.y) {
-                let pTl = Tools.pointOnSuperEllipse(angTl,a,b);
+                let pTl = Tools.pointOnSuperEllipse2(angTl,a,b, n);
                 if (mount.tl.x<pTl.x+origin.x && mount.tl.y<pTl.y+origin.y) {
                     return true;
                 }
         }
         
         if (mount.tr.x>origin.x && mount.tr.y<origin.y) {
-                let pTr = Tools.pointOnSuperEllipse(angTr,a,b);
+                let pTr = Tools.pointOnSuperEllipse2(angTr,a,b, n);
                 if (mount.tr.x>pTr.x+origin.x && mount.tr.y<pTr.y+origin.y) {
                     return true;
                 }
         }
         
         if (mount.bl.x<origin.x && mount.bl.y>origin.y) {
-                let pBl = Tools.pointOnSuperEllipse(angBl,a,b);
+                let pBl = Tools.pointOnSuperEllipse2(angBl,a,b, n);
                 if (mount.bl.x<pBl.x+origin.x && mount.bl.y>pBl.y+origin.y) {
                     return true;
                 }
         }
         
         if (mount.br.x>origin.x && mount.br.y>origin.y) {
-                let pBr = Tools.pointOnSuperEllipse(angBr,a,b);
+                let pBr = Tools.pointOnSuperEllipse2(angBr,a,b, n);
                 if (mount.br.x>pBr.x+origin.x && mount.br.y>pBr.y+origin.y) {
                     return true;
                 }
@@ -408,7 +403,7 @@ class WebDrawer{
                 Tools.RandomRange(0, this.height)
             ),
             new Size(
-                Tools.RandomRange(125,400)
+                Tools.RandomRange(175,500)
             ),
             new Rotation(
                 Tools.RandomRange(-120,120)
@@ -416,7 +411,7 @@ class WebDrawer{
         );
     }
 
-    createMounts(){
+    createMounts(ellParam){
         this.mountsArray = new Array(this.imgArray.length);
         for(let i = 0; i < this.imgArray.length; i++) {
             let mount = this.getRandomMount();
@@ -424,7 +419,7 @@ class WebDrawer{
                 mount.size.w=500;
                 mount.size.h=500;
             }
-            while (this.hitsArray(mount) || this.isOutOfEllips(mount)) {
+            while (this.hitsArray(mount) || this.isOutOfEllips(mount,ellParam)) {
                 mount = this.getRandomMount();
             }
             this.mountsArray[i] = mount;
@@ -536,9 +531,12 @@ class CanvasDrawer{
         this.drawFaces();
         Tools.downloadCanvas(canv, "Mortys C-" + x + ".png");
     }
-    downloadMulti(start, count){
+    downloadMulti(start, count, startEll, increment){
+        let ellParam = startEll;
+        let inc = increment;
+
         for (let z = start; z <= start+count; z++) {
-            this.drawer.createMounts();
+            this.drawer.createMounts(ellParam+=inc);
             this.downloadImg(z);
         }
     }
@@ -546,10 +544,10 @@ class CanvasDrawer{
 
 let drawer = new WebDrawer(mortyArray);
 let canvDraw = new CanvasDrawer(drawer);
-canvDraw.drawer.createMounts();
+canvDraw.drawer.createMounts(2.5);
 canvDraw.loadImages();
 
-//canvDraw.drawLinks(275);
+//canvDraw.drawLinks(300);
 //canvDraw.drawWeb();
 //canvDraw.drawFaces();
 //canvDraw.downloadImg();
