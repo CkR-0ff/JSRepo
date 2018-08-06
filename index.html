@@ -1,70 +1,56 @@
+<doctype <!DOCTYPE html>
 <html>
-    <head>
-        <script src="Maze//circleLabyrinthRefactor.js" ></script>
-        <style>
-            .indexGrid{
-                display:grid;
-                grid-template-columns: 1fr 6fr;
-                grid-auto-rows:minmax(20px, auto);
-                grid-gap:1em;
-                justify-items:stretch;
-                align-items:stretch;
-                height: 100%;
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Main JSRepo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    <style>
+        .indexGrid{
+            display:grid;
+            grid-template-columns: 1fr 6fr;
+            grid-auto-rows:minmax(20px, auto);
+            grid-gap:1em;
+            justify-items:stretch;
+            align-items:stretch;
+            height: 100%;
+        }
+        .menuGrid{
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 7fr 1fr;
+            grid-gap: 1em;
+        }
+        .set{
+            grid-column: 1;
+        }
+        .ItemCanvas{
+            grid-row: 1;
+            grid-column: 2;
+            background-color: black;
+            align-content:center;
+            text-align: center;
+        }
+        #mazeCanvas{
+            height: 100%;
+        }
+    </style>
+    <script>
+        function loadMain(page){
+            if(page === 'maze'){
+                let maindiv = document.getElementById('mainDiv');
+                maindiv.innerHTML = '<object type="text/html" data="Maze/MazeIndex.html" ></object>';
             }
-            .menuGrid{
-                display: grid;
-                grid-template-columns: 1fr;
-                grid-template-rows: 1fr 1fr 1fr 1fr 7fr 1fr;
-                grid-gap: 1em;
-            }
-            .set{
-                grid-column: 1;
-            }
-            .ItemCanvas{
-                grid-row: 1;
-                grid-column: 2;
-                background-color: black;
-                align-content:center;
-                text-align: center;
-            }
-            #mazeCanvas{
-                height: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="indexGrid">
-            <div class="menuGrid">
-                <div class="set sett1">
-                    <label title="The radius of the inner chamber.">Inner Radius</label>
-                    <input type="number" value="7" min="5" step="1" onchange="_mazeController.InnerRadius = this.value;" /></div>
-                <div class="set sett2">
-                        <label title="The distance between the circular walls.">Track width</label>
-                    <input type="number" value="7" min="1" step="1" onchange="_mazeController.RadiusIncrement = this.value;" /></div>
-                <div class="set sett3">
-                    <label title="Thickness of the lines used to draw the maze.">Wall thickness</label>
-                    <input type="number" value="1" min="1" step="1" onchange="_mazeController.LineWidth = this.value;" /></div>
-                <div class="set sett4">
-                        <label id="lblFps" title="Number of redraws per second on animate.">fps()</label><br>
-                        <input type="range" value="60" min="1" max="60" step="1" onchange="_mazeController.fps = this.value;" /></div>
-                <div class="set sett5">
-                    <label title="Color of the walls">Color</label><br>
-                    <input type="color" id="colorInput" onchange="_mazeController.LineColor = this.value;" />
-                </div>
-                <div class="set sett6">
-                    <input type="button" value="Step" onclick="_mazeController.makeStep();" />
-                    <input type="button" value="Animate" onclick="_mazeController.mazeAnimate();" />
-                    <input type="button" value="Stop" onclick="_mazeController.mazeAnimateStop();" />
-                </div>
-            </div>
-            <div class="ItemCanvas">
-                <canvas id="mazeCanvas" >
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Maze" onclick="" />
+    <div id="mainDiv">
 
-                </canvas>
-            </div>
-        </div>
-    </body>
-    <footer>
-           
-    </footer>
+    </div>
+    
+</body>
 </html>

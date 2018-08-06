@@ -291,12 +291,12 @@ class CanvasDrawer{
             ctx.restore();
         });
     }
-    downloadImg(x = 137){
+    downloadImg(x = 137, linkRange){
         let canv = this.getCanvas();
         let ctx = canv.getContext('2d');
 
         ctx.clearRect(0,0,canv.width, canv.height);
-        this.drawLinks(275);
+        this.drawLinks(linkRange);
         this.drawWeb();
         this.removeBlacks(ctx);
         this.drawFaces();
@@ -308,18 +308,18 @@ class CanvasDrawer{
 
         for (let z = start; z <= start+count; z++) {
             this.drawer.createMounts(ellParam+=inc);
-            this.downloadImg(z);
+            this.downloadImg(z, 500);
         }
     }
 }
 
 let drawer = new WebDrawer(mortyArray);
 let canvDraw = new CanvasDrawer(drawer);
-canvDraw.drawer.createMounts(2.5);
-canvDraw.loadImages();
+//canvDraw.drawer.createMounts(2.5);
+//canvDraw.loadImages();
 
 //canvDraw.drawLinks(300);
 //canvDraw.drawWeb();
 //canvDraw.drawFaces();
 //canvDraw.downloadImg();
-//canvDraw.downloadMulti();
+//canvDraw.downloadMulti(137, 10, 4, 0);
