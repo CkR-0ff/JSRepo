@@ -49,16 +49,37 @@
     </style>
     <script>
         function loadMain(page){
+            let maindiv = document.getElementById('mainDiv');
             if(page === 'maze'){
-                let maindiv = document.getElementById('mainDiv');
+                
                 al.get('Maze/MazeIndex.html',(retHtml)=>{
-                    let src = document.getElementById('pageScript');
+                    let src = document.getElementById('pageScriptMaze');
                     if(src)
                         src.parentNode.removeChild(src);
                     let pgScript = document.createElement('script');
                     pgScript.src = "Maze/circleLabyrinthRefactor.js";
-                    pgScript.id  = "pageScript";
+                    pgScript.id  = "pageScriptMaze";
                     document.head.appendChild(pgScript);
+                    maindiv.innerHTML = retHtml;
+                });
+            }else if(page === 'mortys'){
+                al.get('HeadWeb/HeadsPage.html',(retHtml)=>{
+                    let src = document.getElementById('pageScriptHeads');
+                    if(src)
+                        src.parentNode.removeChild(src);
+                    let pgScript = document.createElement('script');
+                    pgScript.src = "HeadWeb/HeadsData.js";
+                    pgScript.id  = "pageScriptHeads";
+                    document.head.appendChild(pgScript);
+
+                    let src = document.getElementById('pageScriptHeadsData');
+                    if(src)
+                        src.parentNode.removeChild(src);
+                    let pgScript = document.createElement('script');
+                    pgScript.src = "HeadWeb/MortyHeads.js";
+                    pgScript.id  = "pageScriptHeadsData";
+                    document.head.appendChild(pgScript);
+
                     maindiv.innerHTML = retHtml;
                 });
             }
@@ -67,6 +88,7 @@
 </head>
 <body>
     <input type="button" value="Maze" onclick="loadMain('maze')" />
+    <input type="button" value="Heads" onclick="loadMain('mortys')" />
     <div id="mainDiv">
 
     </div>

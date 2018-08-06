@@ -115,6 +115,10 @@ class WebDrawer{
         this.mountsArray = new Array(imgArray.length);
         this.width = 6000;
         this.height = 7500;
+        this.minSize = 175;
+        this.maxSize = 500;
+        this.rotAngl = 120;
+        this.ellParam = 4;
     }
     hitsArray(mount){
         let ret = false;
@@ -174,15 +178,15 @@ class WebDrawer{
                 Tools.RandomRange(0, this.height)
             ),
             new Size(
-                Tools.RandomRange(175,500)
+                Tools.RandomRange(this.minSize,this.maxSize)
             ),
             new Rotation(
-                Tools.RandomRange(-120,120)
+                Tools.RandomRange(-this.rotAngl,this.rotAngl)
             )
         );
     }
 
-    createMounts(ellParam){
+    createMounts(ellParam = this.ellParam){
         this.mountsArray = new Array(this.imgArray.length);
         for(let i = 0; i < this.imgArray.length; i++) {
             let mount = this.getRandomMount();
@@ -201,6 +205,8 @@ class WebDrawer{
 class CanvasDrawer{
     constructor(drawer){
         this.drawer = drawer;
+        this.lineWidth = 10;
+        this.linkRange = 500;
     }
     getCanvas(){
         let canv = document.getElementById("faceCanvas");
@@ -227,7 +233,7 @@ class CanvasDrawer{
         let canv = this.getCanvas();
         let ctx = canv.getContext('2d');
         ctx.strokeStyle = 'rgba(50,255,50,255)';
-        ctx.lineWidth = 10;
+        ctx.lineWidth = this.lineWidth;
         ctx.beginPath();
         for (let i = 0; i < this.drawer.mountsArray.length; i++) {
             const cur = this.drawer.mountsArray[i];
@@ -250,7 +256,7 @@ class CanvasDrawer{
         this.drawer.mountsArray.forEach(elem=>{
             
             ctx.strokeStyle = 'rgba(50,255,50,255)';
-            ctx.lineWidth = 15;
+            ctx.lineWidth = this.lineWidth;
             ctx.fillStyle = 'rgba(0,0,0,255)';
             ctx.beginPath();
             ctx.arc(elem.pos.x+elem.size.w/2,elem.pos.y+elem.size.h/2,elem.size.h/2,0,2*Math.PI);
@@ -291,7 +297,7 @@ class CanvasDrawer{
             ctx.restore();
         });
     }
-    downloadImg(x = 137, linkRange){
+    downloadImg(x = 137, linkRange = this.linkRange){
         let canv = this.getCanvas();
         let ctx = canv.getContext('2d');
 
