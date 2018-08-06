@@ -75,7 +75,7 @@
                     src = document.getElementById('pageScriptHeadsData');
                     if(src)
                         src.parentNode.removeChild(src);
-                    let pgScript = document.createElement('script');
+                    pgScript = document.createElement('script');
                     pgScript.src = "HeadWeb/MortyHeads.js";
                     pgScript.id  = "pageScriptHeadsData";
                     document.head.appendChild(pgScript);
