@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Main JSRepo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="main.js"></script>
     <style>
         html, 
         body {
@@ -50,7 +50,9 @@
         function loadMain(page){
             if(page === 'maze'){
                 let maindiv = document.getElementById('mainDiv');
-                maindiv.innerHTML = '<object id="indoc" type="text/html" data="Maze/MazeIndex.html" ></object>';
+                al.get('Maze/MazeIndex.html',(retHtml)=>{
+                    maindiv.innerHTML = retHtml;
+                });
             }
         }
     </script>
