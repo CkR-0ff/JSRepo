@@ -56,6 +56,7 @@
                     let pgScript = document.createElement('script');
                     pgScript.src = "Maze/circleLabyrinthRefactor.js";
                     pgScript.id  = "pageScript";
+                    document.head.appendChild(pgScript);
                     maindiv.innerHTML = retHtml;
                 });
             }
