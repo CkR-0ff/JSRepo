@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <script src="main.js"></script>
+    <script src="pageScript.js" id="pageScript"></script>
     <style>
         html, 
         body {
@@ -51,6 +52,10 @@
             if(page === 'maze'){
                 let maindiv = document.getElementById('mainDiv');
                 al.get('Maze/MazeIndex.html',(retHtml)=>{
+                    document.getElementById('pageScript').parentNode.removeChild(document.getElementById('pageScript'));
+                    let pgScript = document.createElement('script');
+                    pgScript.src = "Maze/circleLabyrinthRefactor.js";
+                    pgScript.id  = "pageScript";
                     maindiv.innerHTML = retHtml;
                 });
             }
