@@ -12,8 +12,8 @@
         body {
             height: 100%;
         }
+        #indoc, 
         #mainDiv{
-            display: inline-block;
             width: 100%;
             height: 100%;
         }
@@ -50,7 +50,7 @@
         function loadMain(page){
             if(page === 'maze'){
                 let maindiv = document.getElementById('mainDiv');
-                maindiv.innerHTML = '<object type="text/html" data="Maze/MazeIndex.html" ></object>';
+                maindiv.innerHTML = '<object id="indoc" type="text/html" data="Maze/MazeIndex.html" ></object>';
             }
         }
     </script>
