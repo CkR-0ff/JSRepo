@@ -113,13 +113,51 @@ class WebDrawer{
     constructor(imgArray){
         this.imgArray = imgArray;
         this.mountsArray = new Array(imgArray.length);
-        this.width = 6000;
-        this.height = 7500;
-        this.minSize = 175;
-        this.maxSize = 500;
-        this.rotAngl = 120;
-        this.ellParam = 4;
+        this._width = 6000;
+        this._height = 7500;
+        this._minSize = 175;
+        this._maxSize = 500;
+        this._rotAngl = 120;
+        this._ellParam = 4;
     }
+    set width(val){
+        this._width = Number.parseInt(val.toString());
+    }
+    set height(val){
+        this._height = Number.parseInt(val.toString());
+    }
+    set minSize(val){
+        this._minSize = Number.parseInt(val.toString());
+    }
+    set maxSize(val){
+        this._maxSize = Number.parseInt(val.toString());
+    }
+    set rotAngl(val){
+        this._rotAngl = Number.parseInt(val.toString());
+    }
+    set ellParam(val){
+        this._ellParam = Number.parseInt(val.toString());
+    }
+
+    get width(){
+        return this._width;
+    }
+    get height(){
+        return this._height;
+    }
+    get minSize(){
+        return this._minSize;
+    }
+    get maxSize(){
+        return this._maxSize;
+    }
+    get rotAngl(){
+        return this._rotAngl;
+    }
+    get ellParam(){
+        return this._ellParam;
+    }
+
     hitsArray(mount){
         let ret = false;
         this.mountsArray.forEach(element => {
@@ -131,8 +169,8 @@ class WebDrawer{
         return ret;
     }
     isOutOfEllips(mount, nL = 2){
-        let a = this.width/2;
-        let b = this.height/2;
+        let a = this._width/2;
+        let b = this._height/2;
         let n = nL;
         let origin = new Position(a,b);
 
@@ -174,29 +212,44 @@ class WebDrawer{
     getRandomMount(){
         return new Mount(
             new Position(
-                Tools.RandomRange(0, this.width), 
-                Tools.RandomRange(0, this.height)
+                Tools.RandomRange(0, this._width), 
+                Tools.RandomRange(0, this._height)
             ),
             new Size(
-                Tools.RandomRange(this.minSize,this.maxSize)
+                Tools.RandomRange(this._minSize,this._maxSize)
             ),
             new Rotation(
-                Tools.RandomRange(-this.rotAngl,this.rotAngl)
+                Tools.RandomRange(-this._rotAngl,this._rotAngl)
             )
         );
     }
 
-    createMounts(ellParam = this.ellParam){
+    createMounts(ellParam = this._ellParam){
         this.mountsArray = new Array(this.imgArray.length);
+        
         for(let i = 0; i < this.imgArray.length; i++) {
             let mount = this.getRandomMount();
             if(i>=0 && i<=14){
                 mount.size.w=500;
                 mount.size.h=500;
             }
+            if(i===0){
+                mount.size.w=750;
+                mount.size.h=750;
+                mount.pos.x = this._width/2-350;
+                mount.pos.y = this._height/2-350;
+                mount.rot = 0;
+            }
+
             while (this.hitsArray(mount) || this.isOutOfEllips(mount,ellParam)) {
                 mount = this.getRandomMount();
+                if(i>=0 && i<=14){
+                    mount.size.w=500;
+                    mount.size.h=500;
+                }
+                console.log('hit in:', i)
             }
+            console.log(i,mount);
             this.mountsArray[i] = mount;
         }
     }
@@ -205,16 +258,33 @@ class WebDrawer{
 class CanvasDrawer{
     constructor(drawer){
         this.drawer = drawer;
-        this.lineWidth = 10;
-        this.linkRange = 500;
+        this._lineWidth = 10;
+        this._linkRange = 500;
     }
+    set lineWidth(val){
+        this._lineWidth = Number.parseInt(val.toString());
+    }
+    set linkRange(val){
+        this._linkRange = Number.parseInt(val.toString());
+    }
+
+    get lineWidth(){
+        return this._lineWidth;
+    }
+    get linkRange(){
+        return this._lineWidth;
+    }
+    
     getCanvas(){
         let canv = document.getElementById("faceCanvas");
-        if (!canv) {
-            canv = document.createElement('canvas');
-            canv.id="faceCanvas";
+        if(canv){
             canv.width = this.drawer.width;
             canv.height = this.drawer.height;
+        }else{
+            canv = document.createElement('canvas');
+            canv.id="faceCanvas";
+            canv.width = this.drawer.width.toString();
+            canv.height = this.drawer.height.toString();
             canv.style.display = "block";
             document.body.appendChild(canv);
         }
@@ -229,19 +299,20 @@ class CanvasDrawer{
             document.body.appendChild(img);
         });
     }
-    drawLinks(range){
-        let canv = this.getCanvas();
-        let ctx = canv.getContext('2d');
+    drawLinks(ctx, range){
         ctx.strokeStyle = 'rgba(50,255,50,255)';
-        ctx.lineWidth = this.lineWidth;
+        ctx.lineWidth = this._lineWidth;
         ctx.beginPath();
+
+        let rng = range;
         for (let i = 0; i < this.drawer.mountsArray.length; i++) {
             const cur = this.drawer.mountsArray[i];
             ctx.moveTo(cur.pos.x+cur.size.w/2,cur.pos.y+cur.size.h/2);
             for (let j = 0; j < this.drawer.mountsArray.length; j++) {
                 const sub = this.drawer.mountsArray[j];
-                if (Tools.isInRange(sub.pos.x+sub.size.w/2,cur.pos.x+cur.size.w/2-range,cur.pos.x+cur.size.w/2+range) &&
-                    Tools.isInRange(sub.pos.y+sub.size.w/2,cur.pos.y+cur.size.h/2-range,cur.pos.y+cur.size.h/2+range) ) {
+                if(i === 0 && j < 15){ rng = this.drawer._height/2; }else{ rng = range; }
+                if (Tools.isInRange(sub.pos.x+sub.size.w/2,cur.pos.x+cur.size.w/2-rng,cur.pos.x+cur.size.w/2+rng) &&
+                    Tools.isInRange(sub.pos.y+sub.size.w/2,cur.pos.y+cur.size.h/2-rng,cur.pos.y+cur.size.h/2+rng) ) {
                     ctx.lineTo(sub.pos.x+sub.size.w/2,sub.pos.y+sub.size.w/2);
                     ctx.moveTo(cur.pos.x+cur.size.w/2,cur.pos.y+cur.size.h/2);
                 }
@@ -249,14 +320,12 @@ class CanvasDrawer{
         }
         ctx.stroke();
     }
-    drawWeb(){
-        let canv = this.getCanvas();
-        let ctx = canv.getContext('2d');
+    drawWeb(ctx){
 
         this.drawer.mountsArray.forEach(elem=>{
             
             ctx.strokeStyle = 'rgba(50,255,50,255)';
-            ctx.lineWidth = this.lineWidth;
+            ctx.lineWidth = this._lineWidth;
             ctx.fillStyle = 'rgba(0,0,0,255)';
             ctx.beginPath();
             ctx.arc(elem.pos.x+elem.size.w/2,elem.pos.y+elem.size.h/2,elem.size.h/2,0,2*Math.PI);
@@ -279,9 +348,7 @@ class CanvasDrawer{
         }
         ctx.putImageData(imgData, 0, 0);
     }
-    drawFaces(){
-        let canv = this.getCanvas();
-        let ctx = canv.getContext('2d');
+    drawFaces(ctx){
 
         let imgs = document.getElementsByClassName('iconsMorty');
 
@@ -297,15 +364,15 @@ class CanvasDrawer{
             ctx.restore();
         });
     }
-    downloadImg(x = 137, linkRange = this.linkRange){
+    downloadImg(x = 137, linkRange = this._linkRange){
         let canv = this.getCanvas();
         let ctx = canv.getContext('2d');
-
+        debugger;
         ctx.clearRect(0,0,canv.width, canv.height);
-        this.drawLinks(linkRange);
-        this.drawWeb();
+        this.drawLinks(ctx,linkRange);
+        this.drawWeb(ctx);
         this.removeBlacks(ctx);
-        this.drawFaces();
+        this.drawFaces(ctx);
         Tools.downloadCanvas(canv, "Mortys C-" + x + ".png");
     }
     downloadMulti(start, count, startEll, increment){
@@ -322,7 +389,7 @@ class CanvasDrawer{
 let drawer = new WebDrawer(mortyArray);
 let canvDraw = new CanvasDrawer(drawer);
 //canvDraw.drawer.createMounts(2.5);
-//canvDraw.loadImages();
+canvDraw.loadImages();
 
 //canvDraw.drawLinks(300);
 //canvDraw.drawWeb();

@@ -11,12 +11,12 @@
     <style>
         html, 
         body {
-            height: 100%;
+            height: 98%;
         }
         #indoc, 
         #mainDiv{
             width: 100%;
-            height: 100%;
+            height: 90%;
         }
         .indexGrid{
             display:grid;
@@ -70,14 +70,17 @@
                     let pgScript = document.createElement('script');
                     pgScript.src = "HeadWeb/HeadsData.js";
                     pgScript.id  = "pageScriptHeads";
-                    document.head.appendChild(pgScript);
-
-                    src = document.getElementById('pageScriptHeadsData');
-                    if(src)
-                        src.parentNode.removeChild(src);
-                    pgScript = document.createElement('script');
-                    pgScript.src = "HeadWeb/MortyHeads.js";
-                    pgScript.id  = "pageScriptHeadsData";
+                    
+                    pgScript.onload = () => {
+                        console.log('postheads');
+                        src = document.getElementById('pageScriptHeadsData');
+                        if(src)
+                            src.parentNode.removeChild(src);
+                        pgScript = document.createElement('script');
+                        pgScript.src = "HeadWeb/MortyHeads.js";
+                        pgScript.id  = "pageScriptHeadsData";
+                        document.head.appendChild(pgScript);
+                    };
                     document.head.appendChild(pgScript);
 
                     maindiv.innerHTML = retHtml;
